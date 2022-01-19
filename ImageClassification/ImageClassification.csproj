@@ -115,6 +115,10 @@
     <PackageReference Include="Xamarin.TensorFlow.Lite" Version="2.4.0" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.4.0" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.3.1" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0-fp32.tflite" />
@@ -128,6 +132,12 @@
     <ProjectReference Include="LibSupport\LibSupport.csproj">
       <Project>{1442F213-9DEE-4047-9D1A-B820878B9328}</Project>
       <Name>LibSupport</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'taskApiDebug' OR '$(Configuration)' == 'taskApiRelease'">
+    <ProjectReference Include="LibTaskApi\LibTaskApi.csproj">
+      <Project>{1442F213-9DEE-4047-9D1A-B820878B9329}</Project>
+      <Name>LibTaskApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
