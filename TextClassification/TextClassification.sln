@@ -9,18 +9,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibInterpreter", "LibInterp
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		interpreterDebug|Any CPU = interpreterDebug|Any CPU
+		interpreterRelease|Any CPU = interpreterRelease|Any CPU
+		taskApiDebug|Any CPU = taskApiDebug|Any CPU
+		taskApiRelease|Any CPU = taskApiRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3A545C7-C6EE-466F-83AF-110307545787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3A545C7-C6EE-466F-83AF-110307545787}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3A545C7-C6EE-466F-83AF-110307545787}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3A545C7-C6EE-466F-83AF-110307545787}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.interpreterDebug|Any CPU.ActiveCfg = interpreterDebug|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.interpreterDebug|Any CPU.Build.0 = interpreterDebug|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.interpreterRelease|Any CPU.ActiveCfg = interpreterRelease|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.interpreterRelease|Any CPU.Build.0 = interpreterRelease|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.taskApiDebug|Any CPU.ActiveCfg = taskApiDebug|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.taskApiDebug|Any CPU.Build.0 = taskApiDebug|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.taskApiRelease|Any CPU.ActiveCfg = taskApiRelease|Any CPU
+		{A3A545C7-C6EE-466F-83AF-110307545787}.taskApiRelease|Any CPU.Build.0 = taskApiRelease|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.interpreterDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.interpreterDebug|Any CPU.Build.0 = Debug|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.interpreterRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.interpreterRelease|Any CPU.Build.0 = Release|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.taskApiDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.taskApiDebug|Any CPU.Build.0 = Debug|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.taskApiRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}.taskApiRelease|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
