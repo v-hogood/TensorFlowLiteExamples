@@ -5,13 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{20AEE5FF-C65B-4331-8648-9ED21F0F59C2}</ProjectGuid>
+    <ProjectGuid>{20AEE5FF-C65B-4331-8648-9ED21F0F59C3}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibInterpreter</RootNamespace>
-    <AssemblyName>LibInterpreter</AssemblyName>
+    <RootNamespace>LibTaskApi</RootNamespace>
+    <AssemblyName>LibTaskApi</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -41,8 +41,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.TensorFlow.Lite" Version="2.5.0.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Text" Version="0.3.1" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\text_classification.tflite" />
