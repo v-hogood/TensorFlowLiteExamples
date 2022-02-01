@@ -130,8 +130,8 @@ namespace ImageClassification
             }
 
             // Updates the input image size.
-            imageSizeX = classifier.GetImageSizeX();
-            imageSizeY = classifier.GetImageSizeY();
+            imageSizeX = classifier.ImageSizeX;
+            imageSizeY = classifier.ImageSizeY;
         }
     }
 }

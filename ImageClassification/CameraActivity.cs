@@ -29,6 +29,7 @@ namespace ImageClassification
         AdapterView.IOnItemSelectedListener
     {
         private const string Tag = "CameraActivity";
+
         private const int PermissionsRequest = 1;
         private const string PermissionsCamera = Manifest.Permission.Camera;
         private SurfaceView surfaceView;
@@ -61,6 +62,7 @@ namespace ImageClassification
         private Model model = Model.Quantized_EfficientNet;
         private Device device = Device.CPU;
         private int numThreads = -1;
+
         private IExecutorService executor = Executors.NewSingleThreadExecutor();
         private BottomSheetCallback bottomSheetCallback;
 
@@ -200,6 +202,7 @@ namespace ImageClassification
             ProcessImage();
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnStart()
         {
             Log.Debug(Tag, "OnStart " + this);
@@ -255,10 +258,7 @@ namespace ImageClassification
         [MethodImpl(MethodImplOptions.Synchronized)]
         protected void RunInBackground(Action a)
         {
-            if (handler != null)
-            {
-                handler.Post(a);
-            }
+            handler?.Post(a);
         }
 
         public override void OnRequestPermissionsResult(
@@ -371,10 +371,7 @@ namespace ImageClassification
 
         protected void ReadyForNextImage()
         {
-            if (postInferenceCallback != null)
-            {
-                postInferenceCallback.Invoke();
-            }
+            postInferenceCallback?.Invoke();
         }
 
         protected int GetScreenOrientation()

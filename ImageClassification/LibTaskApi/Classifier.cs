@@ -43,10 +43,10 @@ namespace ImageClassification
         private const int MaxResults = 3;
 
         // Image size along the x axis.
-        private int imageSizeX;
+        public int ImageSizeX { get; private set; }
 
         // Image size along the y axis.
-        private int imageSizeY;
+        public int ImageSizeY { get; private set; }
 
         // An instance of the driver class to run model inference with Tensorflow Lite.
         protected ImageClassifier imageClassifier;
@@ -153,8 +153,8 @@ namespace ImageClassification
             MetadataExtractor metadataExtractor = new MetadataExtractor(tfliteModel);
             // Image shape is in the format of {1, height, width, 3}.
             int[] imageShape = metadataExtractor.GetInputTensorShape(/*inputIndex=*/ 0);
-            imageSizeY = imageShape[1];
-            imageSizeX = imageShape[2];
+            ImageSizeY = imageShape[1];
+            ImageSizeX = imageShape[2];
         }
 
         // Runs inference and returns the classification results.
@@ -200,22 +200,8 @@ namespace ImageClassification
         // Closes the interpreter and model to release resources.
         public void Close()
         {
-            if (imageClassifier != null)
-            {
-                imageClassifier.Close();
-            }
-        }
-
-        // Get the image size along the x axis.
-        public int GetImageSizeX()
-        {
-            return imageSizeX;
-        }
-
-        // Get the image size along the y axis.
-        public int GetImageSizeY()
-        {
-            return imageSizeY;
+            imageClassifier?.Close();
+            imageClassifier = null;
         }
 
         //
@@ -240,17 +226,13 @@ namespace ImageClassification
         // Convert the camera orientation in degree into {@link ImageProcessingOptions#Orientation}.
         private static Orientation getOrientation(int cameraOrientation)
         {
-            switch (cameraOrientation / 90)
+            return (cameraOrientation / 90) switch
             {
-                case 3:
-                    return Orientation.BottomLeft;
-                case 2:
-                    return Orientation.BottomRight;
-                case 1:
-                    return Orientation.TopRight;
-                default:
-                    return Orientation.TopLeft;
-            }
+                3 => Orientation.BottomLeft,
+                2 => Orientation.BottomRight,
+                1 => Orientation.TopRight, 
+                _ => Orientation.TopLeft
+            };
         }
 
         // Gets the name of the model file stored in Assets.

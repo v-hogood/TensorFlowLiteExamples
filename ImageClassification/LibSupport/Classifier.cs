@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Util;
 using Java.Lang;
 using Java.Nio;
+using Java.Util;
 using Org.Tensorflow.Lite.Support.Common;
 using Org.Tensorflow.Lite.Support.Image;
 using Org.Tensorflow.Lite.Support.Image.Ops;
@@ -13,7 +14,6 @@ using Org.Tensorflow.Lite.Support.Tensorbuffer;
 using Xamarin.TensorFlow.Lite;
 using Xamarin.TensorFlow.Lite.Nnapi;
 using Xamarin.TensorFlow.Lite.GPU;
-using Java.Util;
 
 namespace ImageClassification
 {
@@ -45,10 +45,10 @@ namespace ImageClassification
         // The loaded TensorFlow Lite model.
 
         // Image size along the x axis.
-        private int imageSizeX;
+        public int ImageSizeX { get; private set; }
 
         // Image size along the y axis.
-        private int imageSizeY;
+        public int ImageSizeY { get; private set; }
 
         // Optional GPU delegate for accleration.
         private GpuDelegate gpuDelegate = null;
@@ -186,8 +186,8 @@ namespace ImageClassification
             // Reads type and shape of input and output tensors, respectively.
             int imageTensorIndex = 0;
             int[] imageShape = tflite.GetInputTensor(imageTensorIndex).Shape(); // {1, height, width, 3}
-            imageSizeY = imageShape[1];
-            imageSizeX = imageShape[2];
+            ImageSizeY = imageShape[1];
+            ImageSizeX = imageShape[2];
             Xamarin.TensorFlow.Lite.DataType imageDataType = tflite.GetInputTensor(imageTensorIndex).DataType();
             int probabilityTensorIndex = 0;
             int[] probabilityShape =
@@ -240,33 +240,14 @@ namespace ImageClassification
         // Closes the interpreter and model to release resources.
         public void Close()
         {
-            if (tflite != null)
-            {
-                tflite.Close();
+                tflite?.Close();
                 tflite = null;
-            }
-            if (gpuDelegate != null)
-            {
-                gpuDelegate.Close();
+
+                gpuDelegate?.Close();
                 gpuDelegate = null;
-            }
-            if (nnApiDelegate != null)
-            {
-                nnApiDelegate.Close();
+
+                nnApiDelegate?.Close();
                 nnApiDelegate = null;
-            }
-        }
-
-        // Get the image size along the x axis.
-        public int GetImageSizeX()
-        {
-            return imageSizeX;
-        }
-
-        // Get the image size along the y axis.
-        public int GetImageSizeY()
-        {
-            return imageSizeY;
         }
 
         // Loads input image, and applies preprocessing.
@@ -285,7 +266,7 @@ namespace ImageClassification
                     // TODO(b/169379396): investigate the impact of the resize algorithm on accuracy.
                     // To get the same inference results as lib_task_api, which is built on top of the Task
                     // Library, use ResizeMethod.BILINEAR.
-                .Add(new ResizeOp(imageSizeX, imageSizeY, ResizeOp.ResizeMethod.NearestNeighbor))
+                .Add(new ResizeOp(ImageSizeX, ImageSizeY, ResizeOp.ResizeMethod.NearestNeighbor))
                 .Add(new Rot90Op(numRotation))
                 .Add(GetPreprocessNormalizeOp())
                 .Build();
