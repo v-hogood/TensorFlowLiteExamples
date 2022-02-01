@@ -30,27 +30,12 @@ namespace ImageClassification
         {
         }
 
-        protected override string GetModelPath()
-        {
-            // you can download this file from
-            // see build.gradle for where to obtain this file. It should be auto
-            // downloaded into assets.
-            return "efficientnet-lite0-fp32.tflite";
-        }
+        protected override string ModelPath { get; } = "efficientnet-lite0-fp32.tflite";
 
-        protected override string GetLabelPath()
-        {
-            return "labels_without_background.txt";
-        }
+        protected override string LabelPath { get; } = "labels_without_background.txt";
 
-        protected override ITensorOperator GetPreprocessNormalizeOp()
-        {
-            return new NormalizeOp(ImageMean, ImageStd);
-        }
+        protected override ITensorOperator PreprocessNormalizeOp { get; } = new NormalizeOp(ImageMean, ImageStd);
 
-        protected override ITensorOperator GetPostprocessNormalizeOp()
-        {
-            return new NormalizeOp(ProbabilityMean, ProbabilityStd);
-        }
+        protected override ITensorOperator PostprocessNormalizeOp { get; } = new NormalizeOp(ProbabilityMean, ProbabilityStd);
     }
 }

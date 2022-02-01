@@ -8,6 +8,7 @@ namespace ImageClassification
         //
         // Initializes a {@code ClassifierQuantizedMobileNet}.
         //
+        // @param activity
         // @param device a {@link Device} object to configure the hardware accelerator
         // @param numThreads the number of threads during the inference
         // @throws IOException if the model is not loaded correctly
@@ -17,12 +18,6 @@ namespace ImageClassification
         {
         }
 
-        protected override string GetModelPath()
-        {
-            // you can download this file from
-            // see build.gradle for where to obtain this file. It should be auto
-            // downloaded into assets.
-            return "mobilenet_v1_1.0_224_quant.tflite";
-        }
+        protected override string ModelPath { get; } = "mobilenet_v1_1.0_224_quant.tflite";
     }
 }

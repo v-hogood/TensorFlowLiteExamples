@@ -113,7 +113,7 @@ namespace ImageClassification
             public Float Confidence { get; }
 
             // Optional location within the source image for the location of the recognized object.
-            public RectF Location { get; set; }
+            public RectF Location { get; }
 
             public Recognition(string id, string title, Float confidence, RectF location)
             {
@@ -149,7 +149,7 @@ namespace ImageClassification
         // Initializes a {@code Classifier}.
         protected Classifier(Activity activity, Device device, int numThreads)
         {
-            MappedByteBuffer tfliteModel = FileUtil.LoadMappedFile(activity, GetModelPath());
+            MappedByteBuffer tfliteModel = FileUtil.LoadMappedFile(activity, ModelPath);
             switch (device)
             {
                 case Device.NNAPI:
@@ -181,7 +181,7 @@ namespace ImageClassification
             tflite = new Interpreter(tfliteModel, tfliteOptions);
 
             // Loads labels out from the label file.
-            labels = FileUtil.LoadLabels(activity, GetLabelPath());
+            labels = FileUtil.LoadLabels(activity, LabelPath);
 
             // Reads type and shape of input and output tensors, respectively.
             int imageTensorIndex = 0;
@@ -201,7 +201,7 @@ namespace ImageClassification
             outputProbabilityBuffer = TensorBuffer.CreateFixedSize(probabilityShape, probabilityDataType);
 
             // Creates the post processor for the output probability.
-            probabilityProcessor = new TensorProcessor.Builder().Add(GetPostprocessNormalizeOp()).Build();
+            probabilityProcessor = new TensorProcessor.Builder().Add(PostprocessNormalizeOp).Build();
 
             Log.Debug(Tag, "Created a Tensorflow Lite Image Classifier.");
         }
@@ -268,7 +268,7 @@ namespace ImageClassification
                     // Library, use ResizeMethod.BILINEAR.
                 .Add(new ResizeOp(ImageSizeX, ImageSizeY, ResizeOp.ResizeMethod.NearestNeighbor))
                 .Add(new Rot90Op(numRotation))
-                .Add(GetPreprocessNormalizeOp())
+                .Add(PreprocessNormalizeOp)
                 .Build();
             return imageProcessor.Process(inputImageBuffer);
         }
@@ -305,13 +305,13 @@ namespace ImageClassification
         }
 
         // Gets the name of the model file stored in Assets.
-        protected abstract string GetModelPath();
+        protected abstract string ModelPath { get; }
 
         // Gets the name of the label file stored in Assets.
-        protected abstract string GetLabelPath();
+        protected abstract string LabelPath { get; }
 
         // Gets the TensorOperator to nomalize the input image in preprocessing.
-        protected abstract ITensorOperator GetPreprocessNormalizeOp();
+        protected abstract ITensorOperator PreprocessNormalizeOp { get; }
 
         //
         // Gets the TensorOperator to dequantize the output probability in post processing.
@@ -321,6 +321,6 @@ namespace ImageClassification
         // uniform the API, de-quantize is added to float model too. Mean and std are set to 0.0f and
         // 1.0f, respectively.
         //
-        protected abstract ITensorOperator GetPostprocessNormalizeOp();
+        protected abstract ITensorOperator PostprocessNormalizeOp { get; }
     }
 }

@@ -90,7 +90,7 @@ namespace ImageClassification
             public Float Confidence { get; }
 
             // Optional location within the source image for the location of the recognized object.
-            public RectF Location { get; set; }
+            public RectF Location { get; }
 
             public Recognition(string id, string title, Float confidence, RectF location)
             {
@@ -145,11 +145,11 @@ namespace ImageClassification
                     .SetBaseOptions(baseOptionsBuilder.SetNumThreads(numThreads).Build())
                     .SetMaxResults(MaxResults)
                     .Build();
-            imageClassifier = ImageClassifier.CreateFromFileAndOptions(activity, GetModelPath(), options);
+            imageClassifier = ImageClassifier.CreateFromFileAndOptions(activity, ModelPath, options);
             Log.Debug(Tag, "Created a Tensorflow Lite Image Classifier.");
 
             // Get the input image size information of the underlying tflite model.
-            MappedByteBuffer tfliteModel = FileUtil.LoadMappedFile(activity, GetModelPath());
+            MappedByteBuffer tfliteModel = FileUtil.LoadMappedFile(activity, ModelPath);
             MetadataExtractor metadataExtractor = new MetadataExtractor(tfliteModel);
             // Image shape is in the format of {1, height, width, 3}.
             int[] imageShape = metadataExtractor.GetInputTensorShape(/*inputIndex=*/ 0);
@@ -173,7 +173,7 @@ namespace ImageClassification
             // https://github.com/tensorflow/examples/blob/0ef3d93e2af95d325c70ef3bcbbd6844d0631e07/lite/examples/image_classification/android/lib_support/src/main/java/org/tensorflow/lite/examples/classification/tflite/Classifier.java#L310.
             ImageProcessingOptions imageOptions =
                 ImageProcessingOptions.InvokeBuilder()
-                    .SetOrientation(getOrientation(sensorOrientation))
+                    .SetOrientation(GetOrientation(sensorOrientation))
                     // Set the ROI to the center of the image.
                     .SetRoi(
                         new Rect(
@@ -224,7 +224,7 @@ namespace ImageClassification
         }
 
         // Convert the camera orientation in degree into {@link ImageProcessingOptions#Orientation}.
-        private static Orientation getOrientation(int cameraOrientation)
+        private static Orientation GetOrientation(int cameraOrientation)
         {
             return (cameraOrientation / 90) switch
             {
@@ -236,6 +236,6 @@ namespace ImageClassification
         }
 
         // Gets the name of the model file stored in Assets.
-        protected abstract string GetModelPath();
+        protected abstract string ModelPath { get; }
     }
 }
