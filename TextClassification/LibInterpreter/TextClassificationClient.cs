@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using Android.Content;
 using Android.Content.Res;
 using Android.Util;
@@ -8,14 +7,13 @@ using Java.IO;
 using Java.Lang;
 using Java.Nio;
 using Java.Nio.Channels;
-using Java.Util;
 using Org.Tensorflow.Lite.Support.Metadata;
 using Xamarin.TensorFlow.Lite;
 
 namespace TextClassification
 {
     // Interface to load TfLite model and provide predictions.
-    public class TextClassificationClient : Object, IComparator
+    public class TextClassificationClient
     {
         private const string Tag = "Interpreter";
 
@@ -32,9 +30,6 @@ namespace TextClassification
         private const string Start = "<START>";
         private const string Pad = "<PAD>";
         private const string Unknown = "<UNKNOWN>";
-
-        // Number of results to show in the UI.
-        private const int MaxResults = 3;
 
         private Context context;
         public Dictionary<string, int> Dic { get; } = new Dictionary<string, int>();
@@ -53,7 +48,6 @@ namespace TextClassification
         }
 
         // Load TF Lite model.
-        [MethodImpl(MethodImplOptions.Synchronized)]
         private void LoadModel()
         {
             try
@@ -76,14 +70,13 @@ namespace TextClassification
                 LoadLabelFile(labelFile);
                 Log.Verbose(Tag, "Labels loaded.");
             }
-            catch (System.IO.IOException ex)
+            catch (Java.IO.IOException ex)
             {
                 Log.Error(Tag, "Error loading TF Lite model.\n", ex);
             }
         }
 
         // Free up resources as the client is no longer needed.
-        [MethodImpl(MethodImplOptions.Synchronized)]
         public void Unload()
         {
             TfLite.Close();
@@ -92,7 +85,6 @@ namespace TextClassification
         }
 
         // Classify an input string and returns the classification results.
-        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<Result> Classify(string text)
         {
             // Pre-prosessing.
@@ -106,29 +98,15 @@ namespace TextClassification
             output = Output.ToArray<float[]>();
 
             // Find the best classifications.
-            PriorityQueue pq =
-                new PriorityQueue(
-                    MaxResults, this);
+            List<Result> results = new List<Result>(Labels.Count);
             for (int i = 0; i < Labels.Count; i++)
             {
-                pq.Add(new Result("" + i, Labels[i], new Float(output[0][i])));
+                results.Add(new Result("" + i, Labels[i], output[0][i]));
             }
-            List<Result> results = new List<Result>();
-            while (!pq.IsEmpty)
-            {
-                results.Add(pq.Poll() as Result);
-            }
+            results.Sort((x, y) => y.Confidence.CompareTo(x.Confidence));
 
-            Collections.Sort(results);
             // Return the probability of each class.
             return results;
-        }
-
-        public int Compare(Object o1, Object o2)
-        {
-            Result lhs = o1 as Result;
-            Result rhs = o2 as Result;
-            return Float.Compare(rhs.Confidence.FloatValue(), lhs.Confidence.FloatValue());
         }
 
         // Load TF Lite model from assets.
@@ -192,7 +170,7 @@ namespace TextClassification
                 tmp[index++] = Dic.ContainsKey(word) ? Dic.GetValueOrDefault(word) : Dic.GetValueOrDefault(Unknown);
             }
             // Padding and wrapping.
-            Arrays.Fill(tmp, index, SentenceLen - 1, Dic.GetValueOrDefault(Pad));
+            System.Array.Fill(tmp, index, SentenceLen - 1, Dic.GetValueOrDefault(Pad));
             int[][] ans = { tmp };
             return ans;
         }

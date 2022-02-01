@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Util;
 using Java.IO;
-using Java.Lang;
 using Org.Tensorflow.Lite.Support.Label;
 using Org.Tensorflow.Lite.Task.Text.Nlclassifier;
 
@@ -37,7 +36,7 @@ namespace TextClassification
 
         public void Unload()
         {
-            classifier.Close();
+            classifier?.Close();
             classifier = null;
         }
 
@@ -48,9 +47,9 @@ namespace TextClassification
             for (int i = 0; i < apiResults.Count; i++)
             {
                 Category category = apiResults[i];
-                results.Add(new Result("" + i, category.Label, new Float(category.Score)));
+                results.Add(new Result("" + i, category.Label, category.Score));
             }
-            Java.Util.Collections.Sort(results);
+            results.Sort((x, y) => y.Confidence.CompareTo(x.Confidence));
             return results;
         }
     }

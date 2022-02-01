@@ -3,7 +3,7 @@ using Java.Lang;
 namespace TextClassification
 {
     // An immutable result returned by a TextClassifier describing what was classified.
-    public class Result : Object, IComparable
+    public class Result
     {
         //
         // A unique identifier for what has been classified. Specific to the class, not the instance of
@@ -17,11 +17,11 @@ namespace TextClassification
         // A sortable score for how good the result is relative to others. Higher should be better.
         public Float Confidence { get; }
 
-        public Result(string id, string title, Float confidence)
+        public Result(string id, string title, float confidence)
         {
             this.Id = id;
             this.Title = title;
-            this.Confidence = confidence;
+            this.Confidence = new Float(confidence);
         }
 
         public override string ToString()
@@ -43,11 +43,6 @@ namespace TextClassification
             }
 
             return resultString.Trim();
-        }
-
-        public int CompareTo(Object o)
-        {
-            return (o as Result).Confidence.CompareTo(Confidence);
         }
     }
 }
