@@ -14,7 +14,7 @@ namespace ImageClassification
     public class ClassifierActivity : CameraActivity
     {
         private const string Tag = "ClassifierActivity";
-        private static Size desiredPreviewSize = new Size(480, 640);
+        protected override Size DesiredPreviewSize { get; } = new Size(480, 640);
         private const float TextSizeDip = 10;
         private int previewWidth = 0;
         private int previewHeight = 0;
@@ -25,11 +25,6 @@ namespace ImageClassification
         private int imageSizeX;
         // Input image size of the model along y axis.
         private int imageSizeY;
-
-        protected override Size GetDesiredPreviewFrameSize()
-        {
-            return desiredPreviewSize;
-        }
 
         protected override void OnPreviewSizeChosen(Size size, int rotation)
         {

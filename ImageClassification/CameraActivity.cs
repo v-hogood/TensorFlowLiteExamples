@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using Android;
 using Android.Content.PM;
 using Android.Graphics;
@@ -63,6 +63,7 @@ namespace ImageClassification
         private Device device = Device.CPU;
         private int numThreads = -1;
 
+        private ProcessCameraProvider cameraProvider;
         private IExecutorService executor = Executors.NewSingleThreadExecutor();
         private BottomSheetCallback bottomSheetCallback;
 
@@ -114,15 +115,6 @@ namespace ImageClassification
             Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             SetContentView(Resource.Layout.tfe_ic_activity_camera);
 
-            if (HasPermission())
-            {
-                BindCameraUseCases();
-            }
-            else
-            {
-                RequestPermission();
-            }
-
             threadsTextView = (TextView)FindViewById(Resource.Id.threads);
             plusImageView = (ImageView)FindViewById(Resource.Id.plus);
             minusImageView = (ImageView)FindViewById(Resource.Id.minus);
@@ -161,7 +153,7 @@ namespace ImageClassification
 
             model = (Model)System.Enum.Parse(typeof(Model), modelSpinner.SelectedItem.ToString());
             device = (Device)System.Enum.Parse(typeof(Device), deviceSpinner.SelectedItem.ToString());
-            numThreads = Integer.ParseInt(threadsTextView.Text.ToString().Trim());
+            numThreads = int.Parse(threadsTextView.Text.ToString().Trim());
         }
 
         public void OnPixelCopyFinished(int copyResult)
@@ -202,14 +194,12 @@ namespace ImageClassification
             ProcessImage();
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnStart()
         {
             Log.Debug(Tag, "OnStart " + this);
             base.OnStart();
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnResume()
         {
             Log.Debug(Tag, "OnResume " + this);
@@ -218,9 +208,17 @@ namespace ImageClassification
             handlerThread = new HandlerThread("inference");
             handlerThread.Start();
             handler = new Handler(handlerThread.Looper);
+
+            if (HasPermission())
+            {
+                BindCameraUseCases();
+            }
+            else
+            {
+                RequestPermission();
+            }
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnPause()
         {
             Log.Debug(Tag, "OnPause " + this);
@@ -237,17 +235,18 @@ namespace ImageClassification
                 Log.Error(Tag, e, "Exception!");
             }
 
+            cameraProvider?.UnbindAll();
+            rgbFrameBitmap = null;
+
             base.OnPause();
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnStop()
         {
             Log.Debug(Tag, "OnStop " + this);
             base.OnStop();
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected override void OnDestroy()
         {
             Log.Debug(Tag, "OnDestroy " + this);
@@ -255,7 +254,6 @@ namespace ImageClassification
             base.OnDestroy();
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         protected void RunInBackground(Action a)
         {
             handler?.Post(a);
@@ -268,7 +266,7 @@ namespace ImageClassification
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             if (requestCode == PermissionsRequest)
             {
-                if (AllPermissionsGranted(grantResults))
+                if (grantResults.All(x => x == Permission.Granted))
                 {
                     BindCameraUseCases();
                 }
@@ -277,18 +275,6 @@ namespace ImageClassification
                     RequestPermission();
                 }
             }
-        }
-
-        private static bool AllPermissionsGranted(Permission[] grantResults)
-        {
-            foreach (Permission result in grantResults)
-            {
-                if (result != Permission.Granted)
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private bool HasPermission()
@@ -329,16 +315,16 @@ namespace ImageClassification
                 cameraProviderFuture.AddListener(new Runnable(() =>
                 {
                     // Camera provider is now guaranteed to be available
-                    var cameraProvider = cameraProviderFuture.Get() as ProcessCameraProvider;
+                    cameraProvider = cameraProviderFuture.Get() as ProcessCameraProvider;
 
                     // Set up the view finder use case to display camera preview
                     var preview = new Preview.Builder()
-                        .SetTargetResolution(GetDesiredPreviewFrameSize())
+                        .SetTargetResolution(DesiredPreviewSize)
                         .Build();
 
                     // Set up the image analysis use case which will process frames in real time
                     var imageAnalysis = new ImageAnalysis.Builder()
-                        .SetTargetResolution(GetDesiredPreviewFrameSize())
+                        .SetTargetResolution(DesiredPreviewSize)
                         .SetBackpressureStrategy(ImageAnalysis.StrategyKeepOnlyLatest)
                         .Build();
 
@@ -350,7 +336,6 @@ namespace ImageClassification
                         .Build();
 
                     // Apply declared configs to CameraX using the same lifecycle owner
-                    cameraProvider.UnbindAll();
                     var camera = cameraProvider.BindToLifecycle(
                         this as ILifecycleOwner, cameraSelector, preview, imageAnalysis);
 
@@ -500,7 +485,7 @@ namespace ImageClassification
 
         protected abstract void OnPreviewSizeChosen(Size size, int rotation);
 
-        protected abstract Size GetDesiredPreviewFrameSize();
+        protected abstract Size DesiredPreviewSize { get; }
 
         protected abstract void OnInferenceConfigurationChanged();
 
@@ -509,7 +494,7 @@ namespace ImageClassification
             if (v.Id == Resource.Id.plus)
             {
                 string threads = threadsTextView.Text.ToString().Trim();
-                int numThreads = Integer.ParseInt(threads);
+                int numThreads = int.Parse(threads);
                 if (numThreads >= 9) return;
                 SetNumThreads(++numThreads);
                 threadsTextView.Text = numThreads.ToString();
@@ -517,7 +502,7 @@ namespace ImageClassification
             else if (v.Id == Resource.Id.minus)
             {
                 string threads = threadsTextView.Text.ToString().Trim();
-                int numThreads = Integer.ParseInt(threads);
+                int numThreads = int.Parse(threads);
                 if (numThreads == 1) return;
                 SetNumThreads(--numThreads);
                 threadsTextView.Text = numThreads.ToString();
