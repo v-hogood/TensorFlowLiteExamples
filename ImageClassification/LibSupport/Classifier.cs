@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Util;
 using Java.Lang;
 using Java.Nio;
-using Java.Util;
 using Org.Tensorflow.Lite.Support.Common;
 using Org.Tensorflow.Lite.Support.Image;
 using Org.Tensorflow.Lite.Support.Image.Ops;
@@ -18,7 +17,7 @@ using Xamarin.TensorFlow.Lite.GPU;
 namespace ImageClassification
 {
     // A classifier specialized to label images using TensorFlow Lite.
-    public abstract class Classifier : Object, IComparator
+    public abstract class Classifier : IComparer<float>
     {
         public const string Tag = "ClassifierWithSupport";
 
@@ -96,7 +95,7 @@ namespace ImageClassification
         }
 
         // An immutable result returned by a Classifier describing what was recognized.
-        public class Recognition : Object
+        public class Recognition
         {
             //
             // A unique identifier for what has been recognized. Specific to the class, not the instance of
@@ -115,11 +114,11 @@ namespace ImageClassification
             // Optional location within the source image for the location of the recognized object.
             public RectF Location { get; }
 
-            public Recognition(string id, string title, Float confidence, RectF location)
+            public Recognition(string id, string title, float confidence, RectF location)
             {
                 Id = id;
                 Title = title;
-                Confidence = confidence;
+                Confidence = new Float(confidence);
                 Location = location;
             }
 
@@ -273,33 +272,31 @@ namespace ImageClassification
             return imageProcessor.Process(inputImageBuffer);
         }
 
-        public int Compare(Object o1, Object o2)
+        public int Compare(float x, float y)
         {
-            Recognition lhs = o1 as Recognition;
-            Recognition rhs = o2 as Recognition;
             // Intentionally reversed to put high confidence at the head of the queue.
-            return Float.Compare(rhs.Confidence.FloatValue(), lhs.Confidence.FloatValue());
+            return y == x ? 1 : y.CompareTo(x);
         }
 
         // Gets the top-k results.
         private List<Recognition> GetTopKProbability(IDictionary<string, Float> labelProb)
         {
             // Find the best classifications.
-            PriorityQueue pq =
-                new PriorityQueue(
+            SortedList<float, string> sl =
+                new SortedList<float, string>(
                     MaxResults,
                     this);
 
             foreach (KeyValuePair<string, Float> entry in labelProb)
             {
-                pq.Add(new Recognition("" + entry.Key, entry.Key, entry.Value, null));
+                sl.Add(entry.Value.FloatValue(), entry.Key);
             }
-
+             
             List<Recognition> recognitions = new List<Recognition>();
-            int recognitionsSize = Math.Min(pq.Size(), MaxResults);
+            int recognitionsSize = Math.Min(sl.Count, MaxResults);
             for (int i = 0; i < recognitionsSize; ++i)
             {
-                recognitions.Add(pq.Poll() as Recognition);
+                recognitions.Add(new Recognition("" + sl.Values[i], sl.Values[i], sl.Keys[i], null));
             }
             return recognitions;
         }

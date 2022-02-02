@@ -18,7 +18,7 @@ using static Org.Tensorflow.Lite.Task.Vision.Classifier.ImageClassifier;
 namespace ImageClassification
 {
     // A classifier specialized to label images using TensorFlow Lite.
-    public abstract class Classifier : Object
+    public abstract class Classifier
     {
         public const string Tag = "ClassifierWithTaskApi";
 
@@ -73,7 +73,7 @@ namespace ImageClassification
         }
 
         // An immutable result returned by a Classifier describing what was recognized.
-        public class Recognition : Object
+        public class Recognition
         {
             //
             // A unique identifier for what has been recognized. Specific to the class, not the instance of
@@ -92,11 +92,11 @@ namespace ImageClassification
             // Optional location within the source image for the location of the recognized object.
             public RectF Location { get; }
 
-            public Recognition(string id, string title, Float confidence, RectF location)
+            public Recognition(string id, string title, float confidence, RectF location)
             {
                 Id = id;
                 Title = title;
-                Confidence = confidence;
+                Confidence = new Float(confidence);
                 Location = location;
             }
 
@@ -193,7 +193,6 @@ namespace ImageClassification
 
             Trace.EndSection();
 
-            // Gets top-k results.
             return GetRecognitions(results);
         }
 
@@ -218,7 +217,7 @@ namespace ImageClassification
             {
                 recognitions.Add(
                     new Recognition(
-                        "" + category.Label, category.Label, new Float(category.Score), null));
+                        "" + category.Label, category.Label, category.Score, null));
             }
             return recognitions;
         }
