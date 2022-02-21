@@ -266,11 +266,7 @@ namespace ImageClassification
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             if (requestCode == PermissionsRequest)
             {
-                if (grantResults.All(x => x == Permission.Granted))
-                {
-                    BindCameraUseCases();
-                }
-                else
+                if (!grantResults.All(x => x == Permission.Granted))
                 {
                     RequestPermission();
                 }

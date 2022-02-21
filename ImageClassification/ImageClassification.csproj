@@ -18,7 +18,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -105,19 +105,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\tfl2_logo_dark.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.0.2" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.0.2" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.0.2.3" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.0.2.3" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.0.2.3" />
     <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.0.0.5-alpha20" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite" Version="2.4.0" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.4.0" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.3.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.6" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0-fp32.tflite" />

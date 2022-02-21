@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.tensorflow.lite.examples.classification">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
