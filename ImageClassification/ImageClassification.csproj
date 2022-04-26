@@ -105,12 +105,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\tfl2_logo_dark.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.0.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.0.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.0.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.0.0.5-alpha20" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.6" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.1.0-beta02" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.1.0-beta02" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.1.0-beta02" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.1.0-beta02" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.5.0.2" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0-fp32.tflite" />
