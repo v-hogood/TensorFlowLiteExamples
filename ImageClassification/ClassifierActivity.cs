@@ -15,23 +15,17 @@ namespace ImageClassification
     {
         private const string Tag = "ClassifierActivity";
         protected override Size DesiredPreviewSize { get; } = new Size(480, 640);
-        private const float TextSizeDip = 10;
         private int previewWidth = 0;
         private int previewHeight = 0;
         private long lastProcessingTimeMs;
-        private int sensorOrientation;
         private Classifier classifier;
         // Input image size of the model along x axis.
         private int imageSizeX;
         // Input image size of the model along y axis.
         private int imageSizeY;
 
-        protected override void OnPreviewSizeChosen(Size size, int rotation)
+        protected override void OnPreviewSizeChosen(Size size)
         {
-            float textSizePx =
-                TypedValue.ApplyDimension(
-                    ComplexUnitType.Dip, TextSizeDip, Resources.DisplayMetrics);
-
             RecreateClassifier(GetModel(), GetDevice(), GetNumThreads());
             if (classifier == null)
             {
@@ -42,14 +36,11 @@ namespace ImageClassification
             previewWidth = size.Width;
             previewHeight = size.Height;
 
-            sensorOrientation = rotation - GetScreenOrientation();
-            Log.Info(Tag, "Camera orientation relative to screen canvas: " + sensorOrientation);
-
             Log.Info(Tag, "Initializing at size " + previewWidth + "x" + previewHeight);
-            rgbFrameBitmap = Bitmap.CreateBitmap(previewHeight, previewWidth, Bitmap.Config.Argb8888);
+            rgbFrameBitmap = Bitmap.CreateBitmap(previewWidth, previewHeight, Bitmap.Config.Argb8888);
         }
 
-        protected override void ProcessImage()
+        protected override void ProcessImage(int rotation)
         {
             int cropSize = Math.Min(previewWidth, previewHeight);
 
@@ -59,7 +50,7 @@ namespace ImageClassification
                 {
                     long startTime = SystemClock.UptimeMillis();
                     List<Classifier.Recognition> results =
-                        classifier.RecognizeImage(rgbFrameBitmap, sensorOrientation);
+                        classifier.RecognizeImage(rgbFrameBitmap, rotation);
                     lastProcessingTimeMs = SystemClock.UptimeMillis() - startTime;
                     Log.Verbose(Tag, "Detect: " + results);
 
@@ -69,7 +60,7 @@ namespace ImageClassification
                         ShowFrameInfo(previewWidth + "x" + previewHeight);
                         ShowCropInfo(imageSizeX + "x" + imageSizeY);
                         ShowCameraResolution(cropSize + "x" + cropSize);
-                        ShowRotationInfo(sensorOrientation.ToString());
+                        ShowRotationInfo(rotation.ToString());
                         ShowInference(lastProcessingTimeMs + "ms");
                     });
                 }

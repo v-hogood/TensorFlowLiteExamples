@@ -32,8 +32,6 @@ namespace ImageClassification
 
         private const int PermissionsRequest = 1;
         private const string PermissionsCamera = Manifest.Permission.Camera;
-        private SurfaceView surfaceView;
-        private TextureView textureView;
         protected Bitmap rgbFrameBitmap = null;
         private Handler handler;
         private HandlerThread handlerThread;
@@ -167,31 +165,25 @@ namespace ImageClassification
         // Callback for androidx.camera API
         public void Analyze(IImageProxy image)
         {
-            image.Close();
             if (isProcessingFrame | rgbFrameBitmap == null)
             {
                 Log.Warn(Tag, "Dropping frame!");
+                image.Close();
                 return;
             }
 
             isProcessingFrame = true;
 
             // Copy out RGB bits to our shared buffer
-            if (surfaceView != null && surfaceView.Holder.Surface != null && surfaceView.Holder.Surface.IsValid)
-            {
-                PixelCopy.Request(surfaceView, rgbFrameBitmap, this, surfaceView.Handler);
-            }
-            else if (textureView != null && textureView.IsAvailable)
-            {
-                textureView.GetBitmap(rgbFrameBitmap);
-            }
+            rgbFrameBitmap.CopyPixelsFromBuffer(image.GetPlanes()[0].Buffer);
+            image.Close();
 
             postInferenceCallback = () =>
             {
                 isProcessingFrame = false;
             };
 
-            ProcessImage();
+            ProcessImage(image.ImageInfo.RotationDegrees);
         }
 
         protected override void OnStart()
@@ -322,6 +314,7 @@ namespace ImageClassification
                     var imageAnalysis = new ImageAnalysis.Builder()
                         .SetTargetResolution(DesiredPreviewSize)
                         .SetBackpressureStrategy(ImageAnalysis.StrategyKeepOnlyLatest)
+                        .SetOutputImageFormat(ImageAnalysis.OutputImageFormatRgba8888)
                         .Build();
 
                     imageAnalysis.SetAnalyzer(executor, this);
@@ -338,13 +331,7 @@ namespace ImageClassification
                     // Use the camera object to link our preview use case with the view
                     preview.SetSurfaceProvider(previewView.SurfaceProvider);
 
-                    OnPreviewSizeChosen(preview.AttachedSurfaceResolution, 0);
-
-                    previewView.Post(() =>
-                    {
-                        surfaceView = previewView.GetChildAt(0) as SurfaceView;
-                        textureView = previewView.GetChildAt(0) as TextureView;
-                    });
+                    OnPreviewSizeChosen(imageAnalysis.AttachedSurfaceResolution);
 
                 }), ContextCompat.GetMainExecutor(this));
             });
@@ -477,9 +464,9 @@ namespace ImageClassification
             }
         }
 
-        protected abstract void ProcessImage();
+        protected abstract void ProcessImage(int rotation);
 
-        protected abstract void OnPreviewSizeChosen(Size size, int rotation);
+        protected abstract void OnPreviewSizeChosen(Size size);
 
         protected abstract Size DesiredPreviewSize { get; }
 

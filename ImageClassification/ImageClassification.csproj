@@ -109,8 +109,8 @@
     <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.1.0-beta02" />
     <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.1.0-beta02" />
     <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.1.0-beta02" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.5.0.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0-fp32.tflite" />
