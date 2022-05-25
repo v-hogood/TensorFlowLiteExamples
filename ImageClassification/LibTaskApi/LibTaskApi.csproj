@@ -46,11 +46,11 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.TensorFlow.Lite" Version="2.4.0" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.4.0" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.4.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.4.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.4.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.4.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

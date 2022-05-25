@@ -1,6 +1,6 @@
 using Android.App;
-using Org.Tensorflow.Lite.Support.Common;
-using Org.Tensorflow.Lite.Support.Common.Ops;
+using Xamarin.TensorFlow.Lite.Support.Common;
+using Xamarin.TensorFlow.Lite.Support.Common.Ops;
 
 namespace ImageClassification
 {

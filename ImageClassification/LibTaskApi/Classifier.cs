@@ -5,15 +5,15 @@ using Android.OS;
 using Android.Util;
 using Java.Lang;
 using Java.Nio;
-using Org.Tensorflow.Lite.Support.Common;
-using Org.Tensorflow.Lite.Support.Image;
-using Org.Tensorflow.Lite.Support.Label;
-using Org.Tensorflow.Lite.Support.Metadata;
-using Org.Tensorflow.Lite.Task.Core;
-using Org.Tensorflow.Lite.Task.Core.Vision;
-using Org.Tensorflow.Lite.Task.Vision.Classifier;
-using static Org.Tensorflow.Lite.Task.Core.Vision.ImageProcessingOptions;
-using static Org.Tensorflow.Lite.Task.Vision.Classifier.ImageClassifier;
+using Xamarin.TensorFlow.Lite.Support.Common;
+using Xamarin.TensorFlow.Lite.Support.Image;
+using Xamarin.TensorFlow.Lite.Support.Label;
+using Xamarin.TensorFlow.Lite.Support.Metadata;
+using Xamarin.TensorFlow.Lite.Task.Base;
+using Xamarin.TensorFlow.Lite.Task.Base.Vision;
+using Xamarin.TensorFlow.Lite.Task.Vision.Classifier;
+using static Xamarin.TensorFlow.Lite.Task.Base.Vision.ImageProcessingOptions;
+using static Xamarin.TensorFlow.Lite.Task.Vision.Classifier.ImageClassifier;
 
 namespace ImageClassification
 {
