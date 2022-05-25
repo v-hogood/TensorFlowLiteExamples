@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
-using Org.Tensorflow.Lite.Support.Label;
+using Xamarin.TensorFlow.Lite.Support.Label;
 
 namespace SoundClassification
 {

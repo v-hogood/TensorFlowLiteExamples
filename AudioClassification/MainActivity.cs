@@ -14,8 +14,8 @@ using AndroidX.Core.OS;
 using AndroidX.RecyclerView.Widget;
 using Google.Android.Material.Slider;
 using Google.Android.Material.SwitchMaterial;
-using Org.Tensorflow.Lite.Support.Audio;
-using Org.Tensorflow.Lite.Task.Audio.Classifier;
+using Xamarin.TensorFlow.Lite.Support.Audio;
+using Xamarin.TensorFlow.Lite.Task.Audio.Classifier;
 
 namespace SoundClassification
 {
