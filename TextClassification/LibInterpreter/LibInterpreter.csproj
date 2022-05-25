@@ -41,9 +41,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.TensorFlow.Lite" Version="2.5.0.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.3.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.3.1" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.4.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.4.0" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\text_classification.tflite" />

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Util;
 using Java.IO;
-using Org.Tensorflow.Lite.Support.Label;
-using Org.Tensorflow.Lite.Task.Text.Nlclassifier;
+using Xamarin.TensorFlow.Lite.Support.Label;
+using Xamarin.TensorFlow.Lite.Task.Text.NlClassifier;
 
 namespace TextClassification
 {

@@ -7,8 +7,8 @@ using Java.IO;
 using Java.Lang;
 using Java.Nio;
 using Java.Nio.Channels;
-using Org.Tensorflow.Lite.Support.Metadata;
 using Xamarin.TensorFlow.Lite;
+using Xamarin.TensorFlow.Lite.Support.Metadata;
 
 namespace TextClassification
 {
