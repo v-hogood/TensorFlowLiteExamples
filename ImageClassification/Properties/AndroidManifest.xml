@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme.ImageClassification">
         <activity
             android:name="org.tensorflow.lite.examples.classification.ClassifierActivity"
+            android:exported="true"
             android:label="@string/tfe_ic_app_name"
             android:screenOrientation="portrait">
             <intent-filter>
