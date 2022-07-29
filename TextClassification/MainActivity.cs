@@ -1,104 +1,138 @@
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.OS;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Widget;
+using AndroidX.RecyclerView.Widget;
+using Google.Android.Material.BottomSheet;
+using Google.Android.Material.Button;
+using Google.Android.Material.TextField;
+using Xamarin.TensorFlow.Lite.Support.Label;
 
 namespace TextClassification
 {
-    // The main activity to provide interactions with users.
     [Activity(Name = "org.tensorflow.lite.examples.textclassification.MainActivity", Label = "@string/app_name", Theme = "@style/AppTheme.TextClassification", MainLauncher = true)]
     public class MainActivity : AppCompatActivity,
-        ViewAnimator.IOnClickListener
+        View.IOnClickListener,
+        TextClassificationHelper.TextResultsListener,
+        AdapterView.IOnItemSelectedListener,
+        RadioGroup.IOnCheckedChangeListener
     {
-        private const string Tag = "TextClassificationDemo";
+        private const string Tag = "TextClassification";
 
-        private TextClassificationClient client;
+        TextClassificationHelper classifierHelper;
+        private ResultsAdapter adapter = new ResultsAdapter();
 
-        private TextView resultTextView;
-        private EditText inputEditText;
-        private Handler handler;
-        private ScrollView scrollView;
+        public void OnResult(IList<Category> results, long inferenceTime)
+        {
+            RunOnUiThread(() =>
+            {
+                FindViewById<TextView>(Resource.Id.inference_time_val).Text =
+                    inferenceTime + " ms";
+
+                adapter.ResultsList = results.OrderByDescending(it =>
+                    it.Score).ToList();
+
+                adapter.NotifyDataSetChanged();
+            });
+        }
+
+        public void OnError(string error)
+        {
+            Toast.MakeText(this, error, ToastLength.Short).Show();
+        }
 
         public void OnClick(View v)
         {
-            Classify(inputEditText.Text.ToString());
+            string text = FindViewById<TextInputEditText>(Resource.Id.input_text).Text;
+            if (text == null || text.Length == 0)
+            {
+                classifierHelper.Classify(Resources.GetString(Resource.String.default_edit_text));
+            }
+            else
+            {
+                classifierHelper.Classify(text);
+            }
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.tfe_tc_activity_main);
-            Log.Verbose(Tag, "OnCreate");
+            SetContentView(Resource.Layout.activity_main);
 
-            client = new TextClassificationClient(ApplicationContext);
-            handler = new Handler(Looper.MainLooper);
-            Button classifyButton = (Button)FindViewById(Resource.Id.button);
-            classifyButton.SetOnClickListener(this);
-            resultTextView = (TextView)FindViewById(Resource.Id.result_text_view);
-            inputEditText = (EditText)FindViewById(Resource.Id.input_text);
-            scrollView = (ScrollView)FindViewById(Resource.Id.scroll_view);
+            // Create the classification helper that will do the heavy lifting
+            classifierHelper = new TextClassificationHelper(
+                this, this);
+
+            // Classify the text in the TextEdit box (or the default if nothing is added)
+            // on button click.
+            FindViewById<MaterialButton>(Resource.Id.classify_btn).SetOnClickListener(this);
+
+            FindViewById<RecyclerView>(Resource.Id.results).SetAdapter(adapter);
+
+            InitBottomSheetControls();
         }
 
-        protected override void OnStart()
+        public void OnItemSelected(AdapterView parent, View view, int position, long id)
         {
-            base.OnStart();
-            Log.Verbose(Tag, "OnStart");
-            handler.Post(() =>
-            {
-                client.Load();
-            });
+            classifierHelper.CurrentDelegate = position;
+            classifierHelper.InitClassifier();
         }
 
-        protected override void OnStop()
+        public void OnNothingSelected(AdapterView parent)
         {
-            base.OnStop();
-            Log.Verbose(Tag, "OnStop");
-            handler.Post(() =>
-            {
-                client.Unload();
-            });
+            // no op
         }
 
-        // Send input text to TextClassificationClient and get the classify messages.
-        private void Classify(string text)
+        private void InitBottomSheetControls()
         {
-            handler.Post(() =>
-            {
-                // Run text classification with TF Lite.
-                List<Result> results = client.Classify(text);
+            var behavior = BottomSheetBehavior.From(FindViewById<NestedScrollView>(Resource.Id.bottom_sheet_layout));
+            behavior.State = BottomSheetBehavior.StateExpanded;
+            // When clicked, change the underlying hardware used for inference. Current options are CPU
+            // and NNAPI. GPU is another available option, but when using this option you will need
+            // to initialize the classifier on the thread that does the classifying.
+            var spinner = FindViewById<AppCompatSpinner>(Resource.Id.spinner_delegate);
+            spinner.OnItemSelectedListener = this;
+            spinner.SetSelection(
+                0,
+                false);
 
-                // Show classification result on screen
-                ShowResult(text, results);
-            });
+            // Allows the user to switch between the classification models that are available.
+            FindViewById<RadioGroup>(Resource.Id.model_selector).SetOnCheckedChangeListener(this);
         }
 
-        // Show classification result on the screen.
-        private void ShowResult(string inputText, List<Result> results)
+        public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
-            // Run on UI thread as we'll updating our app UI
-            RunOnUiThread(() =>
+            switch(checkedId)
             {
-                string textToShow = "Input: " + inputText + "\nOutput:\n";
-                for (int i = 0; i < results.Count; i++)
-                {
-                    Result result = results[i];
-                    textToShow += string.Format("    {0}: {1}\n", result.Title, result.Confidence);
-                }
-                textToShow += "---------\n";
+                case Resource.Id.wordvec:
+                    classifierHelper.CurrentModel = TextClassificationHelper.WordVec;
+                    classifierHelper.InitClassifier();
+                    break;
+                case Resource.Id.mobilebert:
+                    classifierHelper.CurrentModel = TextClassificationHelper.MobileBert;
+                    classifierHelper.InitClassifier();
+                    break;
+            };
+        }
 
-                // Append the result to the UI.
-                resultTextView.Append(textToShow);
-
-                // Clear the input text.
-                inputEditText.EditableText.Clear();
-
-                // Scroll to the bottom to show latest entry's classification result.
-                scrollView.Post(() => scrollView.FullScroll(FocusSearchDirection.Down));
-            });
+        public override void OnBackPressed()
+        {
+            if (Build.VERSION.SdkInt == BuildVersionCodes.Q)
+            {
+                // Workaround for Android Q memory leak issue in IRequestFinishCallback$Stub.
+                // (https://issuetracker.google.com/issues/139738913)
+                FinishAfterTransition();
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
     }
 }
