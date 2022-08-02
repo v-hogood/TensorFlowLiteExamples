@@ -1,15 +1,12 @@
-# Sound Classifier Android sample.
+# TensorFlow Lite Audio Classification Android Demo
 
-This Android application demonstrates how to classify sound on-device. It uses:
+### Overview
 
-* [TFLite Task Library](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview)
-* [YAMNet](https://tfhub.dev/google/lite-model/yamnet/classification/tflite/1),
-an audio event classification model.
+This sample will record audio on a physical Android device and attempt to
+classify those recordings. The supported classification models include
+[YAMNET](https://tfhub.dev/google/lite-model/yamnet/classification/tflite/1) and
+a custom speech command model trained using
+[TensorFlow's Model Maker](https://www.tensorflow.org/lite/models/modify/model_maker/speech_recognition).
 
-To test the app, open the app called `TFL Sound Classifier` on your device.
-Re-installing the app may require you to uninstall the previous installations.
+This application should be run on a physical Android device.
 
-## Resources used:
-
-*   [TensorFlow Lite](https://www.tensorflow.org/lite)
-*   [YAMNet audio classification model](https://tfhub.dev/google/lite-model/yamnet/classification/tflite/1)
