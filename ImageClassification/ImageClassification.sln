@@ -5,34 +5,20 @@ VisualStudioVersion = 16.0.810.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageClassification", "ImageClassification.csproj", "{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSupport", "LibSupport\LibSupport.csproj", "{1442F213-9DEE-4047-9D1A-B820878B9328}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTaskApi", "LibTaskApi\LibTaskApi.csproj", "{1442F213-9DEE-4047-9D1A-B820878B9329}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		supportDebug|Any CPU = supportDebug|Any CPU
-		supportRelease|Any CPU = supportRelease|Any CPU
-		taskApiDebug|Any CPU = taskApiDebug|Any CPU
-		taskApiRelease|Any CPU = taskApiRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.supportDebug|Any CPU.ActiveCfg = supportDebug|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.supportDebug|Any CPU.Build.0 = supportDebug|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.supportRelease|Any CPU.ActiveCfg = supportRelease|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.supportRelease|Any CPU.Build.0 = supportRelease|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.taskApiDebug|Any CPU.ActiveCfg = taskApiDebug|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.taskApiDebug|Any CPU.Build.0 = taskApiDebug|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.taskApiRelease|Any CPU.ActiveCfg = taskApiRelease|Any CPU
-		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.taskApiRelease|Any CPU.Build.0 = taskApiRelease|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9328}.supportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9328}.supportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9328}.supportRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9328}.supportRelease|Any CPU.Build.0 = Release|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9329}.taskApiDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9329}.taskApiDebug|Any CPU.Build.0 = Debug|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9329}.taskApiRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{1442F213-9DEE-4047-9D1A-B820878B9329}.taskApiRelease|Any CPU.Build.0 = Release|Any CPU
+		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4908A40-C7FD-42A7-8663-A14EFC23AD4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1442F213-9DEE-4047-9D1A-B820878B9328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1442F213-9DEE-4047-9D1A-B820878B9328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1442F213-9DEE-4047-9D1A-B820878B9328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1442F213-9DEE-4047-9D1A-B820878B9328}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
