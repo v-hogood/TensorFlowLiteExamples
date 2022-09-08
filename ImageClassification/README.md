@@ -18,3 +18,27 @@ This application should be run on a physical Android device.
 
 ![App example without UI controls. Result is espresso.](screenshot2.jpg?raw=true "Screenshot without controls")
 
+## Build the demo using Visual Studio
+
+### Prerequisites
+
+* The **[Visual Studio](https://visualstudio.microsoft.com/vs/mac/)**
+    IDE (Visual Studio 17 or newer). This sample has been tested on
+    Mac Visual Studio 2022.
+
+* A physical Android device with a minimum OS version of SDK 23 (Android 6.0 -
+    Marshmallow) with developer mode enabled. The process of enabling developer
+    mode may vary by device.
+
+### Building
+
+* Open Visual Studio. From the Welcome screen, select Open a local
+    Visual Studio project, solution, or file.
+
+* From the Open File or Project window that appears, navigate to and select
+    the TensorFlowLiteExamples/ImageClassification/ImageClassification solution.
+    Click Open.
+
+* With your Android device connected to your computer and developer mode
+    enabled, click on the black Run arrow in Visual Studio.
+
