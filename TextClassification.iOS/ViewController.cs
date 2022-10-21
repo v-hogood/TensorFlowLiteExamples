@@ -14,7 +14,7 @@ namespace TextClassification
     {
         private TFLNLClassifier classifier;
 
-        unsafe void LoadModel()
+        void LoadModel()
         {
             var modelPath = NSBundle.MainBundle.PathForResource(
                 "text_classification", "tflite");
@@ -76,7 +76,7 @@ namespace TextClassification
         }
 
         // Classify the text and display the result.
-        unsafe private void Classify(string text)
+        private void Classify(string text)
         {
             // Run TF Lite inference in a background thread to avoid blocking app UI.
             DispatchQueue.DefaultGlobalQueue.DispatchAsync(() =>
