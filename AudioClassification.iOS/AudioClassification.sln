@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1703.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioClassification", "AudioClassification.csproj", "{54ECFA61-638C-43D0-8D8A-518D5CB108F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhone.Build.0 = Debug|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhone.ActiveCfg = Release|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {674909EF-E273-4513-AB83-6915FD5D8A16}
+	EndGlobalSection
+EndGlobal
