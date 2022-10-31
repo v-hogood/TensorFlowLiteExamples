@@ -73,8 +73,8 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
-        <Reference Include="Xamarin.iOS" />
         <Reference Include="System.Core" />
+        <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Xamarin.iOS.TensorFlow.Lite.Task.Vision" Version="0.4.1" />
@@ -196,7 +196,6 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
-        <Compile Include="SceneDelegate.cs" />
         <Compile Include="CameraFeedManager.cs" />
         <Compile Include="ImageClassificationHelper.cs" />
         <Compile Include="InferenceViewController.cs" />
@@ -204,6 +203,7 @@
             <DependentUpon>InferenceViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="PreviewView.cs" />
+        <Compile Include="SceneDelegate.cs" />
         <Compile Include="ViewController.cs" />
         <Compile Include="ViewController.designer.cs">
             <DependentUpon>ViewController.cs</DependentUpon>

@@ -77,7 +77,6 @@ namespace ImageClassification
             // Initializes the session
             session.SessionPreset = AVCaptureSession.PresetHigh;
             this.previewView.Session = session;
-            this.previewView.PreviewLayer.Connection.VideoOrientation = AVCaptureVideoOrientation.Portrait;
             this.previewView.PreviewLayer.VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
             this.AttemptToConfigureSession();
         }
@@ -211,7 +210,7 @@ namespace ImageClassification
         //
         private void ConfigureSession()
         {
-            if (cameraConfiguration == CameraConfiguration.Success)
+            if (cameraConfiguration != CameraConfiguration.Success)
                 return;
 
             session.BeginConfiguration();
@@ -359,14 +358,28 @@ namespace ImageClassification
         //
         // This method delegates the CVPixelBuffer of the frame seen by the camera currently.
         //
-        void CaptureOutput(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
+        [Export("captureOutput:didOutputSampleBuffer:fromConnection:")]
+        void DidOutputSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
         {
             // Converts the CMSampleBuffer to a CVPixelBuffer.
-            CVPixelBuffer pixelBuffer = (CVPixelBuffer)sampleBuffer.GetImageBuffer();
+            var pixelBuffer = sampleBuffer.GetImageBuffer() as CVPixelBuffer;
+            sampleBuffer.Dispose(); sampleBuffer = null;
             if (pixelBuffer == null) return;
 
             // Delegates the pixel buffer to the ViewController.
             Delegate?.DidOutput(pixelBuffer: pixelBuffer);
+        }
+
+        [Export("captureOutput:didDropSampleBuffer:fromConnection:")]
+        public void DidDropSampleBuffer(AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
+        {
+            CMAttachmentMode mode = 0;
+            var reason = CMAttachmentBearer.GetAttachment<NSString>(target: sampleBuffer, key: CMSampleBufferAttachmentKey.DroppedFrameReason, attachmentModeOut: out mode);
+            Debug.Print("drop frame reason: " + reason);
+
+            sampleBuffer.Dispose(); sampleBuffer = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

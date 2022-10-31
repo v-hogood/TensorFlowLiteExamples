@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CoreGraphics;
+using CoreImage;
 using Foundation;
 using Photos;
 using UIKit;
@@ -32,8 +33,8 @@ namespace ImageClassification
     }
 
     public partial class InferenceViewController : UIViewController,
-        IUITableViewDataSource,
-        IUIPickerViewDataSource
+        IUITableViewDataSource, IUITableViewDelegate,
+        IUIPickerViewDataSource, IUIPickerViewDelegate
     {
         public InferenceViewController(IntPtr handle) : base(handle) { }
 
@@ -120,6 +121,7 @@ namespace ImageClassification
 
             var picker = new UIPickerView();
             picker.DataSource = this;
+            picker.Delegate = this;
             modelTextField.InputView = picker;
 
             doneButton = new UIButton(frame: new CGRect(x: 0, y: 0, width: 60, height: 44));
@@ -150,7 +152,7 @@ namespace ImageClassification
             Delegate?.ViewControllerAction(this, action: new Change.ChangeThreadCount { threadCount = CurrentThreadCount });
         }
 
-        [Export("thresholdStepperValueChange:")]
+        [Export("thresholdStepperValueChanged:")]
         public void thresholdStepperValueChanged(UIStepper sender)
         {
             scoreThreshold = (float)sender.Value;
@@ -175,6 +177,12 @@ namespace ImageClassification
         }
 
         // MARK: UITableView Data Source
+        [Export("numberOfSectionsInTableView:")]
+        public nint NumberOfSections(UITableView tableView)
+        {
+            return Enum.GetNames(typeof(InferenceSections)).Length;
+        }
+
         public nint RowsInSection(UITableView tableView, nint section)
         {
             var inferenceSection = (InferenceSections)(int)section;
@@ -187,6 +195,12 @@ namespace ImageClassification
                 InferenceSections.InferenceInfo => Enum.GetNames(typeof(InferenceInfo)).Length,
                 _ => 0
             };
+        }
+
+        [Export("tableView:heightForRowAtIndexPath:")]
+        public nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+        {
+            return normalCellHeight;
         }
 
         public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -258,7 +272,7 @@ namespace ImageClassification
             {
                 var category = tempResult?.classifications.Categories[row];
                 fieldName = category.Label ?? "";
-                info = String.Format("%.2f", category.Score * 100.0) + "%";
+                info = String.Format("{0:0.00}", category.Score * 100.0) + "%";
             }
             return new Tuple<string, string>(fieldName, info);
         }
@@ -284,7 +298,7 @@ namespace ImageClassification
                     (int)Resolution.Width + "x" + (int)Resolution.Height,
                 InferenceInfo.InferenceTime =>
                     finalResults == null ? "0ms" :
-                    String.Format("%.2fms", finalResults?.inferenceTime),
+                    String.Format("{0:0.00}ms", finalResults?.inferenceTime),
                 _ => "0ms"
             };
 
@@ -299,6 +313,25 @@ namespace ImageClassification
         public nint GetRowsInComponent(UIPickerView pickerView, nint component)
         {
             return Enum.GetNames(typeof(ModelType)).Length;
+        }
+
+        [Export("pickerView:didSelectRow:inComponent:")]
+        public void Selected(UIPickerView pickerView, nint row, nint component)
+        {
+            modelSelectIndex = (int)row;
+        }
+
+        [Export("pickerView:titleForRow:forComponent:")]
+        public string GetTitle(UIPickerView pickerView, nint row, nint component)
+        {
+            if (row < Enum.GetNames(typeof(ModelType)).Length)
+            {
+                return ((ModelType)(int)row).Title();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

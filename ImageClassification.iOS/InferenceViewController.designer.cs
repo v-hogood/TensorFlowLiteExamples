@@ -5,6 +5,7 @@
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
@@ -78,6 +79,8 @@ namespace ImageClassification
     [Register("InfoCell")]
     public class InfoCell : UITableViewCell
     {
+        public InfoCell(IntPtr handle) : base(handle) { }
+
         [Outlet]
         [GeneratedCode("iOS Designer", "1.0")]
         public UILabel fieldNameLabel { get; set; }

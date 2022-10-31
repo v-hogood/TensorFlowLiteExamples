@@ -175,11 +175,15 @@ namespace ImageClassification
             // Make sure the model will not run too often, making the results changing quickly and hard to
             // read.
             var currentTimeMs = new NSDate().SecondsSince1970 * 1000;
-            if (currentTimeMs - previousInferenceTimeMs >= delayBetweenInferencesMs) return;
+            if (currentTimeMs - previousInferenceTimeMs < delayBetweenInferencesMs) return;
             previousInferenceTimeMs = currentTimeMs;
 
             // Drop this frame if the model is still busy classifying a previous frame.
-            if (isInferenceQueueBusy) return;
+            if (isInferenceQueueBusy)
+            {
+                pixelBuffer.Dispose(); pixelBuffer = null;
+                return;
+            }
 
             inferenceQueue.DispatchAsync(() =>
             {
@@ -187,14 +191,15 @@ namespace ImageClassification
 
                 // Pass the pixel buffer to TensorFlow Lite to perform inference.
                 var result = this.imageClassificationHelper?.Classify(pixelBuffer: pixelBuffer);
+                var resolution = new CGSize(
+                    width: pixelBuffer.Width, height: pixelBuffer.Height);
+                pixelBuffer.Dispose(); pixelBuffer = null;
 
                 this.isInferenceQueueBusy = false;
 
                 // Display results by handing off to the InferenceViewController.
                 DispatchQueue.MainQueue.DispatchAsync(() =>
                 {
-                    var resolution = new CGSize(
-                        width: pixelBuffer.Width, height: pixelBuffer.Height);
                     this.inferenceViewController.InferenceResult = result;
                     this.inferenceViewController.Resolution = resolution;
                     this.inferenceViewController.tableView.ReloadData();
@@ -270,7 +275,7 @@ namespace ImageClassification
         private void AddPanGesture()
         {
             var panGesture = new UIPanGestureRecognizer(
-                target: this, action: new ObjCRuntime.Selector("didPan(panGesture:):"));
+                target: this, action: new ObjCRuntime.Selector("didPan:"));
             bottomSheetView.AddGestureRecognizer(panGesture);
         }
 
@@ -301,11 +306,11 @@ namespace ImageClassification
         {
             if (bottomSheetViewBottomSpace.Constant == 0.0)
             {
-                bottomSheetStateImageView.Image = new UIImage(filename: "down_icon");
+                bottomSheetStateImageView.Image = UIImage.FromBundle(name: "down_icon");
             }
             else
             {
-                bottomSheetStateImageView.Image = new UIImage(filename: "up_icon");
+                bottomSheetStateImageView.Image = UIImage.FromBundle(name: "up_icon");
             }
         }
 
