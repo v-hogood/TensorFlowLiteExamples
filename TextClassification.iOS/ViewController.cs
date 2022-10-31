@@ -51,13 +51,11 @@ namespace TextClassification
             NSNotificationCenter.DefaultCenter.AddObserver(
                 aName: UIKeyboard.WillShowNotification,
                 notify: ((NSNotification notification) =>
-                { KeyboardWillShow(notification); }),
-                fromObject: null);
+                    { KeyboardWillShow(notification); }));
             NSNotificationCenter.DefaultCenter.AddObserver(
                 aName: UIKeyboard.WillHideNotification,
                 notify: ((NSNotification notification) =>
-                { KeyboardWillHide(notification); }),
-                fromObject: null);
+                    { KeyboardWillHide(notification); }));
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -118,10 +116,14 @@ namespace TextClassification
 
         // UITextFieldDelegate
 
+        [Export("textFieldShouldReturn:")]
         public bool ShouldReturn(UITextField textField)
         {
-            var text = textField.Text.Trim();
-            Classify(text: text);
+            var text = textField.Text?.Trim();
+            if (text != null && text.Length > 0)
+            {
+                Classify(text: text);
+            }
             textField.ResignFirstResponder();
             return true;
         }

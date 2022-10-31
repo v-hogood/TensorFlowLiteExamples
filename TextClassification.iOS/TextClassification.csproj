@@ -71,14 +71,9 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
-        <Reference Include="System.Xml" />
-        <Reference Include="System.Core" />
         <Reference Include="Xamarin.iOS" />
-        <Reference Include="System.Numerics" />
-        <Reference Include="System.Numerics.Vectors" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
       <PackageReference Include="Xamarin.iOS.TensorFlow.Lite.Task.Text" Version="0.4.1" />
     </ItemGroup>
     <ItemGroup>
@@ -160,7 +155,6 @@
         <Compile Include="ViewController.designer.cs">
             <DependentUpon>ViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="SceneDelegate.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\text_classification.tflite" />
