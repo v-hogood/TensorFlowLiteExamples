@@ -1,3 +1,4 @@
+using System;
 using Foundation;
 using UIKit;
 using static AudioClassification.HomeViewController;
@@ -7,21 +8,21 @@ namespace AudioClassification
     public interface InferenceViewDelegate
     {
         // This method is called when the user changes the value to update model used for inference.
-        void View(InferenceView view, InferenceView.Action action);
+        void View(InferenceView view, InferenceView.Change action);
     }
 
     // View to allows users changing the inference configs.
     public partial class InferenceView : UIView
     {
-        public InferenceView(System.IntPtr handle) : base(handle) { }
+        public InferenceView(IntPtr handle) : base(handle) { }
 
-        public class Action : NSObject
+        public class Change : NSObject
         {
-            public sealed class ChangeModel : Action { public ModelType modelType; };
-            public sealed class ChangeOverlap : Action { public double overlap; };
-            public sealed class ChangeMaxResults : Action { public int maxResults; };
-            public sealed class ChangeScoreThreshold : Action { public float threshold;  };
-            public sealed class ChangeThreadCount : Action { public int threadCount; };
+            public sealed class ChangeModel : Change { public ModelType modelType; };
+            public sealed class ChangeOverlap : Change { public double overlap; };
+            public sealed class ChangeMaxResults : Change { public int maxResults; };
+            public sealed class ChangeScoreThreshold : Change { public float threshold;  };
+            public sealed class ChangeThreadCount : Change { public int threadCount; };
         }
 
         public InferenceViewDelegate Delegate;
@@ -34,7 +35,7 @@ namespace AudioClassification
             overlapStepper.Value = overlap;
             maxResultsLabel.Text = maxResult + "";
             maxResultsStepper.Value = (double)maxResult;
-            thresholdLabel.Text = string.Format("%.1f", threshold);
+            thresholdLabel.Text = string.Format("{0:0.0}", threshold);
             thresholdStepper.Value = (double)threshold;
             threadsLabel.Text = threads + "";
             threadsStepper.Value = (double)threads;
@@ -53,35 +54,35 @@ namespace AudioClassification
                 modelSelect = new ModelType.Yamnet();
             else
                 modelSelect = new ModelType.SpeechCommandModel();
-            Delegate?.View(this, action: new Action.ChangeModel { modelType = modelSelect });
+            Delegate?.View(this, action: new Change.ChangeModel { modelType = modelSelect });
         }
 
         [Export("overlapStepperValueChanged:")]
         public void overlapStepperValueChanged(UIStepper sender)
         {
-            overlapLabel.Text = System.String.Format("%.0f", sender.Value * 100) + "%";
-            Delegate?.View(this, action: new Action.ChangeOverlap { overlap = sender.Value });
+            overlapLabel.Text = String.Format("{0:0}", sender.Value * 100) + "%";
+            Delegate?.View(this, action: new Change.ChangeOverlap { overlap = sender.Value });
         }
 
         [Export("maxResultsStepperValueChanged:")]
         public void maxResultsStepperValueChanged(UIStepper sender)
         {
             maxResultsLabel.Text = sender.Value + "";
-            Delegate?.View(this, action: new Action.ChangeMaxResults { maxResults = (int)sender.Value });
+            Delegate?.View(this, action: new Change.ChangeMaxResults { maxResults = (int)sender.Value });
         }
 
         [Export("thresholdStepperValueChanged:")]
         public void thresholdStepperValueChanged(UIStepper sender)
         {
-            thresholdLabel.Text = System.String.Format("%.1f", sender.Value);
-            Delegate?.View(this, action: new Action.ChangeScoreThreshold { threshold = (float)sender.Value });
+            thresholdLabel.Text = String.Format("{0:0.0}", sender.Value);
+            Delegate?.View(this, action: new Change.ChangeScoreThreshold { threshold = (float)sender.Value });
         }
 
         [Export("threadsStepperValueChanged:")]
         public void threadsStepperValueChanged(UIStepper sender)
         {
             threadsLabel.Text = (int)sender.Value + "";
-            Delegate?.View(this, action: new Action.ChangeThreadCount { threadCount = (int)sender.Value });
+            Delegate?.View(this, action: new Change.ChangeThreadCount { threadCount = (int)sender.Value });
         }
 
         [Export("showHiddenButtonTouchUpInside:")]

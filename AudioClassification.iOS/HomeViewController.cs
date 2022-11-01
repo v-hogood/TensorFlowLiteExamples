@@ -1,3 +1,4 @@
+using System;
 using AVFoundation;
 using CoreFoundation;
 using Foundation;
@@ -9,11 +10,11 @@ namespace AudioClassification
 {
     // The sample app's home screen.
     public partial class HomeViewController : UIViewController,
-        IUITableViewDataSource,
+        IUITableViewDataSource, IUITableViewDelegate,
         AudioClassificationHelperDelegate,
         InferenceViewDelegate
     {
-        public HomeViewController(System.IntPtr handle) : base(handle) { }
+        public HomeViewController(IntPtr handle) : base(handle) { }
 
         // MARK: - Variables
 
@@ -69,7 +70,7 @@ namespace AudioClassification
                     ShowPermissionsErrorAlert();
                     break;
                 default:
-                    throw new System.Exception("Microphone permission check returned unexpected result.");
+                    throw new Exception("Microphone permission check returned unexpected result.");
             }
         }
 
@@ -134,14 +135,14 @@ namespace AudioClassification
         public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell(reuseIdentifier: "ResultCell", indexPath) as ResultTableViewCell;
-            if (cell == null) throw new System.Exception();
+            if (cell == null) throw new Exception();
             cell.SetData(inferenceResults[indexPath.Row]);
             return cell;
         }
 
-        public System.nint RowsInSection(UITableView tableView, System.nint section)
+        public nint RowsInSection(UITableView tableView, nint section)
         {
-            return inferenceResults.Length;
+            return inferenceResults == null ? 0 : inferenceResults.Length;
         }
 
         void AudioClassificationHelperDelegate.AudioClassificationHelper(AudioClassificationHelper helper, Result result)
@@ -153,26 +154,29 @@ namespace AudioClassification
 
         void AudioClassificationHelperDelegate.AudioClassificationHelper(AudioClassificationHelper helper, NSError error)
         {
-            var errorMessage =
-                "An error occured while running audio classification: " + error.LocalizedDescription;
-            var alert = UIAlertController.Create(
-                title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert);
-            alert.AddAction(UIAlertAction.Create(title: "OK", style: UIAlertActionStyle.Default, handler: ((_) => { })));
-            PresentViewController(alert, animated: true, completionHandler: (() => { }));
+            DispatchQueue.MainQueue.DispatchAsync(() =>
+            {
+                var errorMessage =
+                    "An error occured while running audio classification: " + error.LocalizedDescription;
+                var alert = UIAlertController.Create(
+                    title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create(title: "OK", style: UIAlertActionStyle.Default, handler: ((_) => { })));
+                PresentViewController(alert, animated: true, completionHandler: (() => { }));
+            });
         }
 
-        void InferenceViewDelegate.View(InferenceView view, InferenceView.Action action)
+        void InferenceViewDelegate.View(InferenceView view, InferenceView.Change action)
         {
-            if (action is Action.ChangeModel)
-                this.modelType = (action as Action.ChangeModel).modelType;
-            else if (action is Action.ChangeOverlap)
-                this.overLap = (action as Action.ChangeOverlap).overlap;
-            else if (action is Action.ChangeMaxResults)
-                this.maxResults = (action as Action.ChangeMaxResults).maxResults;
-            else if (action is Action.ChangeScoreThreshold)
-                this.threshold = (action as Action.ChangeScoreThreshold).threshold;
-            else if (action is Action.ChangeThreadCount)
-                this.threadCount = (action as Action.ChangeThreadCount).threadCount;
+            if (action is Change.ChangeModel)
+                this.modelType = (action as Change.ChangeModel).modelType;
+            else if (action is Change.ChangeOverlap)
+                this.overLap = (action as Change.ChangeOverlap).overlap;
+            else if (action is Change.ChangeMaxResults)
+                this.maxResults = (action as Change.ChangeMaxResults).maxResults;
+            else if (action is Change.ChangeScoreThreshold)
+                this.threshold = (action as Change.ChangeScoreThreshold).threshold;
+            else if (action is Change.ChangeThreadCount)
+                this.threadCount = (action as Change.ChangeThreadCount).threadCount;
 
             // Restart the audio classifier as the config as changed.
             RestartClassifier();

@@ -1,3 +1,4 @@
+using System;
 using CoreFoundation;
 using Foundation;
 using TensorFlowLiteTaskAudio;
@@ -75,14 +76,14 @@ namespace AudioClassification
             NSError error;
             classifier = TFLAudioClassifier.AudioClassifierWithOptions(options: classifierOptions, out error);
             if (error != null)
-                throw new System.Exception("Failed to create the classifier with error: " + error.LocalizedDescription);
+                throw new Exception("Failed to create the classifier with error: " + error.LocalizedDescription);
 
             // Create an `AudioRecord` instance to record input audio that satisfies
             // the model's requirements.
             audioRecord = classifier.CreateAudioRecordWithError(out error);
             if (error != null)
-                throw new System.Exception("Failed to create the classifier with error: " + error.LocalizedDescription);
-            inputAudioTensor = classifier.CreateInputAudioTensor;
+                throw new Exception("Failed to create the classifier with error: " + error.LocalizedDescription);
+            inputAudioTensor = classifier.CreateInputAudioTensor();
         }
 
         public void StopClassifier()
@@ -145,7 +146,11 @@ namespace AudioClassification
             // Grab the latest audio chunk in the audio record and run classification.
             NSError error;
             if (!inputAudioTensor.LoadAudioRecord(audioRecord: audioRecord, out error))
+            {
+                if (error.Code == (int)TFLAudioRecordErrorCode.WaitingForNewMicInputError)
+                    return;
                 Delegate?.AudioClassificationHelper(this, error: error);
+            }
             var results = classifier.ClassifyWithAudioTensor(audioTensor: inputAudioTensor, out error);
             if (error != null)
                 Delegate?.AudioClassificationHelper(this, error: error);

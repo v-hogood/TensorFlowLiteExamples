@@ -1,4 +1,5 @@
 // TableViewCell to display the inference results. Each cell corresponds to a single category.
+using System;
 using TensorFlowLiteTaskAudio;
 using UIKit;
 
@@ -11,7 +12,7 @@ namespace AudioClassification
         public void SetData(TFLCategory data)
         {
             nameLabel.Text = data.Label;
-            if (!System.Double.IsNaN(data.Score))
+            if (!Double.IsNaN(data.Score))
             {
                 // score view width is equal 1/4 screen with
                 scoreWidthLayoutConstraint.Constant = UIScreen.MainScreen.Bounds.Width / 4 * new System.nfloat(data.Score);
