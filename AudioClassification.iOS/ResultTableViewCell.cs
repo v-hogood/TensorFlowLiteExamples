@@ -1,10 +1,10 @@
-// TableViewCell to display the inference results. Each cell corresponds to a single category.
 using System;
 using TensorFlowLiteTaskAudio;
 using UIKit;
 
 namespace AudioClassification
 {
+    // TableViewCell to display the inference results. Each cell corresponds to a single category.
     partial class ResultTableViewCell: UITableViewCell
     {
         public ResultTableViewCell(System.IntPtr handle) : base(handle) { }
