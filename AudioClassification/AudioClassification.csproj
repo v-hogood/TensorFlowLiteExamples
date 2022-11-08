@@ -107,11 +107,10 @@
     <AndroidResource Include="Resources\drawable\tfl_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.ConstraintLayout" Version="2.1.4.1" />
-    <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.2.0.2" />
-    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.1" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.AndroidX.ConstraintLayout" Version="2.1.4.2" />
+    <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.2.0.3" />
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.4.2" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.2" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Audio" Version="0.4.2" />
@@ -123,9 +122,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
+  -->
     <Target Name="BeforeBuild">
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/lite-model_yamnet_classification_tflite_1.tflite" DestinationFolder="Assets" DestinationFileName="yamnet.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/speech_commands.tflite" DestinationFolder="Assets" DestinationFileName="speech.tflite" />
     </Target>
     <Target Name="AfterBuild">
     </Target>
-  -->
 </Project>

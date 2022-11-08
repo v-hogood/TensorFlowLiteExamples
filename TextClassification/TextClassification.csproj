@@ -100,9 +100,8 @@
     <AndroidResource Include="Resources\drawable\tfl_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.ConstraintLayout" Version="2.1.4.1" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.AndroidX.ConstraintLayout" Version="2.1.4.2" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Text" Version="0.4.2" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +111,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
+  -->
     <Target Name="BeforeBuild">
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/text_classification_v2.tflite" DestinationFolder="Assets" DestinationFileName="wordvec.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/mobilebert.tflite" DestinationFolder="Assets" DestinationFileName="mobilebert.tflite" />
     </Target>
     <Target Name="AfterBuild">
     </Target>
-  -->
 </Project>

@@ -11,6 +11,10 @@ generated using
 These instructions walk you through building and running the demo on an Android
 device.
 
+The model files are downloaded via MSBuild scripts when you build and run the
+app. You don't need to do any steps to download TFLite models into the project
+explicitly.
+
 ## Build the demo using Visual Studio
 
 ### Prerequisites
@@ -34,3 +38,7 @@ device.
 * With your Android device connected to your computer and developer mode
     enabled, click on the black Run arrow in Visual Studio.
 
+### Models used
+
+Downloading, extraction, and placing the models into the assets folder is
+managed automatically by the TextClassification.csproj file.

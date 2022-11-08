@@ -62,7 +62,6 @@ namespace TextClassification
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
             // Create the classification helper that will do the heavy lifting

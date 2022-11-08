@@ -2,4 +2,5 @@ bin
 obj
 .vs
 *.user
+*.tflite
 Resource.designer.cs

@@ -10,6 +10,10 @@ a custom speech command model trained using
 These instructions walk you through building and running the demo on an Android
 device.
 
+The model files are downloaded via MSBuild scripts when you build and run the
+app. You don't need to do any steps to download TFLite models into the project
+explicitly.
+
 This application should be run on a physical Android device.
 
 ## Build the demo using Visual Studio
@@ -35,3 +39,7 @@ This application should be run on a physical Android device.
 *   With your Android device connected to your computer and developer mode
     enabled, click on the black Run arrow in Visual Studio.
 
+### Models used
+
+Downloading, extraction, and placing the models into the assets folder is
+managed automatically by the AudioClassification.csproj file.
