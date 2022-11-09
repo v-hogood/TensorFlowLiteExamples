@@ -38,6 +38,8 @@
         <WarningLevel>4</WarningLevel>
         <MtouchLink>None</MtouchLink>
         <MtouchArch>x86_64</MtouchArch>
+        <CodesignProvision>Automatic</CodesignProvision>
+        <CodesignKey>iPhone Developer</CodesignKey>
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -52,7 +54,7 @@
         <CodesignEntitlements></CodesignEntitlements>
         <CodesignKey>iPhone Developer</CodesignKey>
         <MtouchDebug>true</MtouchDebug>
-        <CodesignProvision></CodesignProvision>
+        <CodesignProvision>Automatic</CodesignProvision>
         <CodesignExtraArgs>--generate-entitlement-der</CodesignExtraArgs>
         <MtouchLink>SdkOnly</MtouchLink>
         <LangVersion>8.0</LangVersion>
@@ -66,7 +68,7 @@
         <CodesignEntitlements></CodesignEntitlements>
         <MtouchArch>ARM64</MtouchArch>
         <CodesignKey>iPhone Developer</CodesignKey>
-        <CodesignProvision></CodesignProvision>
+        <CodesignProvision>Automatic</CodesignProvision>
         <CodesignExtraArgs>--generate-entitlement-der</CodesignExtraArgs>
         <MtouchLink>SdkOnly</MtouchLink>
         <LangVersion>8.0</LangVersion>
@@ -84,42 +86,6 @@
             <Visible>false</Visible>
         </ImageAsset>
         <ImageAsset Include="Assets.xcassets\darkOrLight.colorset\Contents.json">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\Contents.json">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo@2x.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo@3x.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\down_icon.imageset\Contents.json">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown@2x.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown@3x.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\up_icon.imageset\Contents.json">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp@2x.png">
-            <Visible>false</Visible>
-        </ImageAsset>
-        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp@3x.png">
             <Visible>false</Visible>
         </ImageAsset>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -182,6 +148,42 @@
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png">
             <Visible>false</Visible>
         </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\down_icon.imageset\Contents.json">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown@2x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\down_icon.imageset\icnChevronDown@3x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\up_icon.imageset\Contents.json">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp@2x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\up_icon.imageset\icnChevronUp@3x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\Contents.json">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo@2x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\tfl_logo.imageset\tfl_logo@3x.png">
+            <Visible>false</Visible>
+        </ImageAsset>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
@@ -209,11 +211,18 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-      <BundleResource Include="Resources\efficientnet_lite0.tflite" />
-      <BundleResource Include="Resources\efficientnet_lite1.tflite" />
-      <BundleResource Include="Resources\efficientnet_lite2.tflite" />
-      <BundleResource Include="Resources\efficientnet_lite3.tflite" />
-      <BundleResource Include="Resources\efficientnet_lite4.tflite" />
+        <BundleResource Include="Resources\efficientnet_lite0.tflite" />
+        <BundleResource Include="Resources\efficientnet_lite1.tflite" />
+        <BundleResource Include="Resources\efficientnet_lite2.tflite" />
+        <BundleResource Include="Resources\efficientnet_lite3.tflite" />
+        <BundleResource Include="Resources\efficientnet_lite4.tflite" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+    <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/image_classification/ios/lite-model_efficientnet_lite0_uint8_2.tflite" DestinationFolder="Resources" DestinationFileName="efficientnet_lite0.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/image_classification/ios/lite-model_efficientnet_lite1_uint8_2.tflite" DestinationFolder="Resources" DestinationFileName="efficientnet_lite1.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/image_classification/ios/lite-model_efficientnet_lite2_uint8_2.tflite" DestinationFolder="Resources" DestinationFileName="efficientnet_lite2.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/image_classification/ios/lite-model_efficientnet_lite3_uint8_2.tflite" DestinationFolder="Resources" DestinationFileName="efficientnet_lite3.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/image_classification/ios/lite-model_efficientnet_lite4_uint8_2.tflite" DestinationFolder="Resources" DestinationFileName="efficientnet_lite4.tflite" />
+    </Target>
 </Project>

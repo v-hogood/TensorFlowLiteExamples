@@ -196,8 +196,12 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-      <BundleResource Include="Resources\speech_commands.tflite" />
-      <BundleResource Include="Resources\yamnet.tflite" />
+        <BundleResource Include="Resources\speech_commands.tflite" />
+        <BundleResource Include="Resources\yamnet.tflite" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+    <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/ios/lite-model_yamnet_classification_tflite_1.tflite" DestinationFolder="Resources" DestinationFileName="yamnet.tflite" />
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/ios/speech_commands.tflite" DestinationFolder="Resources" DestinationFileName="speech_commands.tflite" />
+    </Target>
 </Project>

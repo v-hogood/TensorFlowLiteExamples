@@ -157,7 +157,10 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-      <BundleResource Include="Resources\text_classification.tflite" />
+        <BundleResource Include="Resources\text_classification.tflite" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+    <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
+        <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/ios/text_classification_v2.tflite" DestinationFolder="Resources" DestinationFileName="text_classification.tflite" />
+    </Target>
 </Project>
