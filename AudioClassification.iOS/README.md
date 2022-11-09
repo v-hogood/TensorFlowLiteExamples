@@ -7,7 +7,7 @@ on iOS.
 
 ### Model
 
-There are two models
+The model will be downloaded as part of the build process. There are two models
 included in this sample app: *
 [YAMNet](https://tfhub.dev/google/lite-model/yamnet/classification/tflite/1) is
 a general purpose audio classification model that can detects 521 different type
@@ -65,5 +65,10 @@ the microphone at various objects and enjoy seeing how the model classifies thin
 
 ## Model references
 
-*Do not delete the references* to the .tflite files after you clone the
-repo and open the project.
+*Do not delete the empty references* to the .tflite files after you clone the
+repo and open the project. These references will be fulfilled once the model and
+label files are downloaded when the application is built and run for the first
+time. If you delete the references to them, you can still find that the .tflite
+and .txt files are downloaded to the Model folder, the next time you build the
+application. You will have to add the references to these files in the bundle
+separately in that case.

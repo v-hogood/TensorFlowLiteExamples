@@ -14,6 +14,8 @@ running the demo on an iOS device.
 
 For details of the model used, visit [Image classification](https://www.tensorflow.org/lite/examples/image_classification/overview).
 
+The model will be downloaded as part of the build process.
+
 ### iOS app details
 
 The app is written entirely in C# and uses the TensorFlow Lite Task Library's
@@ -59,5 +61,10 @@ the camera at various objects and enjoy seeing how the model classifies things!
 
 ## Model references
 
-_Do not delete the references_ to the .tflite files after you
-clone the repo and open the project.
+_Do not delete the empty references_ to the .tflite files after you
+clone the repo and open the project. These references will be fulfilled once the
+model files are downloaded when the application is built and run for
+the first time. If you delete the references to them, you can still find that
+the .tflite files are downloaded to the `TFLite` folder, the next time you
+build the application. You will have to add the references to these files in the
+bundle separately in that case.
