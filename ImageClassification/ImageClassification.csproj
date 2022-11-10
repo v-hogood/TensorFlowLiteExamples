@@ -116,12 +116,10 @@
     <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.2.0.3" />
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.6.0.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support" Version="0.4.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Support.Metadata" Version="0.4.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.4.2" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.4.2" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.10.0" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.3" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.4.3" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.4.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0.tflite" />

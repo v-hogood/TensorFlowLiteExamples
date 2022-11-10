@@ -102,7 +102,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.ConstraintLayout" Version="2.1.4.2" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Text" Version="0.4.2" />
+    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Text" Version="0.4.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\wordvec.tflite" />

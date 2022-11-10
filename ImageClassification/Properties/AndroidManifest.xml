@@ -47,7 +47,6 @@
             android:exported="true"
             android:resizeableActivity="true"
             android:rotationAnimation="seamless"
-            android:theme="@style/AppTheme"
             tools:targetApi="O">
 
             <!-- Main app intent filter -->
