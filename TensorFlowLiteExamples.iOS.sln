@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioClassification", "AudioClassification.iOS\AudioClassification.csproj", "{54ECFA61-638C-43D0-8D8A-518D5CB108F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageClassification", "ImageClassification.iOS\ImageClassification.csproj", "{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextClassification", "TextClassification.iOS\TextClassification.csproj", "{084F4CCE-59AC-40D8-91AD-777609F0C375}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Debug|iPhone.Build.0 = Debug|iPhone
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Release|iPhone.ActiveCfg = Release|iPhone
+		{084F4CCE-59AC-40D8-91AD-777609F0C375}.Release|iPhone.Build.0 = Release|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Debug|iPhone.Build.0 = Debug|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhone.ActiveCfg = Release|iPhone
+		{54ECFA61-638C-43D0-8D8A-518D5CB108F5}.Release|iPhone.Build.0 = Release|iPhone
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60E9CE3B-44D8-4F23-9B9F-9653F7755075}
+	EndGlobalSection
+EndGlobal

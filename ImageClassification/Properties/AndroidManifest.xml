@@ -19,8 +19,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.tensorflow.lite.examples.imageclassification">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="32" />
-
     <!-- Enable instant app support -->
     <dist:module dist:instant="true" />
 
@@ -30,6 +28,8 @@
     <!-- Declare permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,7 +37,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:taskAffinity=""
-        android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
         <activity
@@ -47,6 +46,7 @@
             android:exported="true"
             android:resizeableActivity="true"
             android:rotationAnimation="seamless"
+            android:theme="@style/AppTheme"
             tools:targetApi="O">
 
             <!-- Main app intent filter -->
