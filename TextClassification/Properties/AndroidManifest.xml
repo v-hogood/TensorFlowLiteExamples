@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.tensorflow.lite.examples.textclassification">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="32" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
 
     <application
         android:allowBackup="true"

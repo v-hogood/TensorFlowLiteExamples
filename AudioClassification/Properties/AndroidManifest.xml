@@ -19,7 +19,7 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="32" />
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="33" />
 
     <application
         android:allowBackup="true"
