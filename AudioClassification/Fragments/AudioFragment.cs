@@ -6,7 +6,7 @@ using AndroidX.AppCompat.Widget;
 using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using AndroidX.RecyclerView.Widget;
-using Xamarin.TensorFlow.Lite.Support.Label;
+using TensorFlow.Lite.Support.Label;
 
 namespace AudioClassification
 {

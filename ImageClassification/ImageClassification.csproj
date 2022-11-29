@@ -108,13 +108,14 @@
     <AndroidResource Include="Resources\drawable-v24\tfl_logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.1.0.1" />
     <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.1.0.1" />
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
     <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu" Version="2.10.0" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.3" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Vision" Version="0.4.3" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.4.3" />
+    <PackageReference Include="TensorFlow.Lite.Task.Base" Version="0.4.3" />
+    <PackageReference Include="TensorFlow.Lite.Task.Vision" Version="0.4.3" />
+    <PackageReference Include="TensorFlow.Lite.Gpu.Delegate.Plugin" Version="0.4.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\efficientnet-lite0.tflite" />

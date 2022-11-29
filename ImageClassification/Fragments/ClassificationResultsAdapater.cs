@@ -4,8 +4,8 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using Java.Lang;
-using Xamarin.TensorFlow.Lite.Support.Label;
-using Xamarin.TensorFlow.Lite.Task.Vision.Classifier;
+using TensorFlow.Lite.Support.Label;
+using TensorFlow.Lite.Task.Vision.Classifier;
 
 namespace ImageClassification
 {

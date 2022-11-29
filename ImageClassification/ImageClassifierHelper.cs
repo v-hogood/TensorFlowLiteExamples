@@ -5,11 +5,11 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 using Java.Lang;
+using TensorFlow.Lite.Support.Image;
+using TensorFlow.Lite.Task.Base;
+using TensorFlow.Lite.Task.Base.Vision;
+using TensorFlow.Lite.Task.Vision.Classifier;
 using Xamarin.TensorFlow.Lite.GPU;
-using Xamarin.TensorFlow.Lite.Support.Image;
-using Xamarin.TensorFlow.Lite.Task.Base;
-using Xamarin.TensorFlow.Lite.Task.Base.Vision;
-using Xamarin.TensorFlow.Lite.Task.Vision.Classifier;
 
 namespace ImageClassification
 {

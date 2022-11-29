@@ -11,7 +11,7 @@ using AndroidX.RecyclerView.Widget;
 using Google.Android.Material.BottomSheet;
 using Google.Android.Material.Button;
 using Google.Android.Material.TextField;
-using Xamarin.TensorFlow.Lite.Support.Label;
+using TensorFlow.Lite.Support.Label;
 
 namespace TextClassification
 {

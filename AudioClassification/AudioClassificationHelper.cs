@@ -4,9 +4,9 @@ using Android.OS;
 using Android.Util;
 using Java.Lang;
 using Java.Util.Concurrent;
-using Xamarin.TensorFlow.Lite.Support.Audio;
-using Xamarin.TensorFlow.Lite.Task.Audio.Classifier;
-using Xamarin.TensorFlow.Lite.Task.Base;
+using TensorFlow.Lite.Support.Audio;
+using TensorFlow.Lite.Task.Audio.Classifier;
+using TensorFlow.Lite.Task.Base;
 
 namespace AudioClassification
 {

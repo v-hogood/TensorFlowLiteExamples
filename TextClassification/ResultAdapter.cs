@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
-using Xamarin.TensorFlow.Lite.Support.Label;
+using TensorFlow.Lite.Support.Label;
 
 namespace TextClassification
 {

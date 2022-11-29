@@ -109,8 +109,8 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Base" Version="0.4.3" />
-    <PackageReference Include="Xamarin.TensorFlow.Lite.Task.Audio" Version="0.4.3" />
+    <PackageReference Include="TensorFlow.Lite.Task.Base" Version="0.4.3" />
+    <PackageReference Include="TensorFlow.Lite.Task.Audio" Version="0.4.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\yamnet.tflite" />

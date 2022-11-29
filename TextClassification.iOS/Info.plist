@@ -5,7 +5,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.tensorflow.lite.examples.TextClassification</string>
+	<string>tensorflow.lite.examples.TextClassification</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

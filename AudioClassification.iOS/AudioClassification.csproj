@@ -74,7 +74,7 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Xamarin.iOS.TensorFlow.Lite.Task.Audio" Version="0.4.3" />
+      <PackageReference Include="TensorFlowLiteTaskAudio.iOS" Version="0.4.3" />
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\Contents.json">
