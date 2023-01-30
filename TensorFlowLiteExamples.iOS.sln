@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageClassification", "Imag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextClassification", "TextClassification.iOS\TextClassification.csproj", "{084F4CCE-59AC-40D8-91AD-777609F0C375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundClassification", "SoundClassification.iOS\SoundClassification.csproj", "{527D2E18-A02F-4D12-BA24-908FA644862C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -41,6 +43,14 @@ Global
 		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Debug|iPhone.Build.0 = Debug|iPhone
 		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhone.ActiveCfg = Release|iPhone
 		{E8B9B293-7C99-4F8A-B8F5-C490111FDE0A}.Release|iPhone.Build.0 = Release|iPhone
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{527D2E18-A02F-4D12-BA24-908FA644862C}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
