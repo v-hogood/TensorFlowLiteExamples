@@ -43,16 +43,16 @@ You can build it and run with the iPhone Simulator, but the app will raise a
     https://github.com/v-hogood/TensorFlowLiteExamples.git`
 
 At the end of this step you should have a directory called
-`ImageClassification.iOS`.
+`TensorFlowLiteExamples`.
 
-2.  Open the project in Visual Studio with the following command: `open
-    ImageClassification.sln`
+2.  Open the solution in Visual Studio with the following command: `open
+    TensorFlowLiteExamples.iOS.sln`
 
-This launches Visual Studio and opens the `ImageClassification` solution.
+This launches Visual Studio and opens the `TensorFlowLiteExamples.iOS` solution.
 
-3.  Right click on the `ImageClassification` project in the left hand solution to open
-    the project properties. In the **iOS Bundle Signing** tab of the **Build**
-    section, select your development team from the dropdown.
+3.  Select the `ImageClassification` project in the left hand navigation and open
+    the project properties. In the **Bundle Signing** section of the **iOS**
+    tab, select your development team from the dropdown.
 
 4.  With an iOS device connected, build and run the app in Visual Studio.
 
@@ -65,6 +65,6 @@ _Do not delete the empty references_ to the .tflite files after you
 clone the repo and open the project. These references will be fulfilled once the
 model files are downloaded when the application is built and run for
 the first time. If you delete the references to them, you can still find that
-the .tflite files are downloaded to the `TFLite` folder, the next time you
+the .tflite files are downloaded to the `Resources` folder, the next time you
 build the application. You will have to add the references to these files in the
-bundle separately in that case.
+project separately in that case.

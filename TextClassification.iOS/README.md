@@ -13,8 +13,9 @@
 demo
 application.<br/>
 ```git clone https://github.com/v-hogood/TensorFlowLiteExamples```
-2. Open the project in Visual Studio with the following command:<br/>
-```open TextClassification.sln```<br/>
-This launches Visual Studio and opens the ```TextClassification``` solution.
+At the end of this step you should have a directory called ```TensorFlowLiteExamples```.
+2. Open the solution in Visual Studio with the following command:<br/>
+```open TensorFlowLiteExamples.iOS.sln```<br/>
+This launches Visual Studio and opens the ```TensorFlowLiteExamples.iOS``` solution.
 3. Select the `Run` button to install the app on an iOS Simulator or a physical
 device.

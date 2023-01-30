@@ -23,7 +23,7 @@ Also, you can use your own model generated on
 ### iOS app details
 
 The app is written entirely in C# and uses the TensorFlow Lite
-[C# library](https://github.com/v-hogooc/Xamarin.TensorFlow.Lite.Support/Xamarin.iOS.TensorFlow.Lite.Task.Audio)
+[C# library](https://github.com/v-hogood/TensorFlowLiteSupport/TensorFlowLiteTaskAudio)
 for performing sound classification.
 
 ## Requirements
@@ -44,19 +44,19 @@ agree to the license before continuing.
     https://github.com/v-hogood/TensorFlowLiteExamples.git`
 
 At the end of this step you should have a directory called
-`AudioClassification.iOS`.
+`TensorFlowLiteExamples`.
 
-2.  Open the project in Visual Studio with the following command: `open
-    AudioClassification.sln`
+2.  Open the solution in Visual Studio with the following command: `open
+    TensorFlowLiteExamples.iOS.sln`
 
-This launches Visual Studio and opens the `AudioClassification` solution. You can run the
+This launches Visual Studio and opens the `TensorFlowLiteExamples.iOS` solution. You can run the
 app on an iOS Simulator.
 
 Follow these steps to run the sample app on a physical device.
 
-3.  Right click on the `AudioClassification` project in the left hand solution to open
-    the project properties. In the **iOS Bundle Signing** tab of the **Build**
-    section, select your development team from the dropdown.
+3.  Select the `AudioClassification` project in the left hand navigation and open
+    the project properties. In the **Bundle Signing** section of the **iOS**
+    tab, select your development team from the dropdown.
 
 4.  With an iOS device connected, build and run the app in Visual Studio.
 
@@ -69,6 +69,6 @@ the microphone at various objects and enjoy seeing how the model classifies thin
 repo and open the project. These references will be fulfilled once the model and
 label files are downloaded when the application is built and run for the first
 time. If you delete the references to them, you can still find that the .tflite
-and .txt files are downloaded to the Model folder, the next time you build the
-application. You will have to add the references to these files in the bundle
+and .txt files are downloaded to the Resources folder, the next time you build the
+application. You will have to add the references to these files in the project
 separately in that case.
