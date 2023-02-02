@@ -17,7 +17,7 @@ TFLite](https://blog.tensorflow.org/2020/12/build-sound-classification-models-fo
 ### iOS app details
 
 The app is written entirely in C# and uses the TensorFlow Lite
-[C# library](https://github.com/v-hogood/TensorFlowLiteSupport/TensorFlowLite)
+[C# library](https://github.com/v-hogood/TensorFlowLiteSupport/tree/main/TensorFlowLite)
 for performing sound classification.
 
 ## Requirements

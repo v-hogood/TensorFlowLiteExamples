@@ -33,7 +33,7 @@ This application should be run on a physical Android device.
     Visual Studio project, solution, or file.
 
 *   From the Open File or Project window that appears, navigate to and select
-    the TensorFlowLiteExamples/AudioClassification/AudioClassification
+    the TensorFlowLiteExamples/AudioClassification
     solution. Click Open.
 
 *   With your Android device connected to your computer and developer mode

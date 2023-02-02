@@ -107,8 +107,8 @@
     <AndroidResource Include="Resources\drawable\tfl_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.3.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.2" />
     <PackageReference Include="TensorFlow.Lite.Task.Base" Version="0.4.3" />
     <PackageReference Include="TensorFlow.Lite.Task.Audio" Version="0.4.3" />
   </ItemGroup>

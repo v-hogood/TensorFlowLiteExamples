@@ -23,7 +23,7 @@ Also, you can use your own model generated on
 ### iOS app details
 
 The app is written entirely in C# and uses the TensorFlow Lite
-[C# library](https://github.com/v-hogood/TensorFlowLiteSupport/TensorFlowLiteTaskAudio)
+[C# library](https://github.com/v-hogood/TensorFlowLiteSupport/tree/main/TensorFlowLiteTaskAudio)
 for performing sound classification.
 
 ## Requirements
