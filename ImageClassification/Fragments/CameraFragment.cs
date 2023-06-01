@@ -287,6 +287,8 @@ namespace ImageClassification
             }
         }
 
+        Size ImageAnalysis.IAnalyzer.DefaultTargetResolution => null;
+
         public void Analyze(IImageProxy image)
         {
             if (bitmapBuffer == null)

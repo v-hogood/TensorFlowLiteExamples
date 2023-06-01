@@ -100,8 +100,8 @@
     <AndroidResource Include="Resources\drawable\tfl_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.8" />
-    <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.9.0.1" />
+    <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.3.1" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\wordvec.tflite" />
