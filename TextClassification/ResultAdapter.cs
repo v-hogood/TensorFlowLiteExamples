@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using Android.Views;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using TensorFlow.Lite.Support.Label;
 

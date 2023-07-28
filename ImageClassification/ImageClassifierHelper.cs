@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;

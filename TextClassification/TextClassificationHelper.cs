@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Android.Content;
 using Android.OS;
 using Java.Lang;

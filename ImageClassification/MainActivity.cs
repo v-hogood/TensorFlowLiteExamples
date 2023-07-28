@@ -1,5 +1,4 @@
-﻿using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using AndroidX.AppCompat.App;
 
 namespace ImageClassification
@@ -23,7 +22,9 @@ namespace ImageClassification
             }
             else
             {
+#pragma warning disable CA1422
                 base.OnBackPressed();
+#pragma warning restore CA1422
             }
         }
     }

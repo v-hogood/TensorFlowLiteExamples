@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
-using Android.App;
 using Android.OS;
 using Android.Views;
-using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.Widget;
@@ -130,7 +126,9 @@ namespace TextClassification
             }
             else
             {
+#pragma warning disable CA1422
                 base.OnBackPressed();
+#pragma warning restore CA1422
             }
         }
     }

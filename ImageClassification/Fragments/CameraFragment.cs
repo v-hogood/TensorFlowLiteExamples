@@ -1,20 +1,19 @@
-using System.Collections.Generic;
 using Android.Graphics;
 using Android.OS;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Camera.Core;
 using AndroidX.Camera.Lifecycle;
 using AndroidX.Camera.View;
 using AndroidX.Core.Content;
-using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using AndroidX.RecyclerView.Widget;
 using Java.Lang;
 using Java.Util.Concurrent;
 using TensorFlow.Lite.Task.Vision.Classifier;
+using Exception = Java.Lang.Exception;
+using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace ImageClassification
 {
@@ -310,9 +309,12 @@ namespace ImageClassification
             DisplayMetrics outMetrics = new DisplayMetrics();
 
             Display display;
+#pragma warning disable CA1422
             if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.R)
             {
+#pragma warning disable CA1416
                 display = RequireActivity().Display;
+#pragma warning restore CA1416
                 display.GetRealMetrics(outMetrics);
             }
             else
@@ -320,6 +322,7 @@ namespace ImageClassification
                 display = RequireActivity().WindowManager.DefaultDisplay;
                 display.GetMetrics(outMetrics);
             }
+#pragma warning restore CA1422
 
             return display.Rotation;
         }

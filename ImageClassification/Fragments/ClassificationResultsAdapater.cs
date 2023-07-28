@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Android.Views;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using Java.Lang;
 using TensorFlow.Lite.Support.Label;
 using TensorFlow.Lite.Task.Vision.Classifier;
+using Math = System.Math;
 
 namespace ImageClassification
 {

@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using Android.OS;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.AppCompat.Widget;
-using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using AndroidX.RecyclerView.Widget;
 using TensorFlow.Lite.Support.Label;
+using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace AudioClassification
 {
