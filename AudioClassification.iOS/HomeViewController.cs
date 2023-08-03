@@ -1,8 +1,5 @@
-using System;
 using AVFoundation;
 using CoreFoundation;
-using Foundation;
-using UIKit;
 using TensorFlowLiteTaskAudio;
 using static AudioClassification.InferenceView;
 
@@ -106,7 +103,8 @@ namespace AudioClassification
             var settingsAction = UIAlertAction.Create(title: "Settings", style: UIAlertActionStyle.Default, ((_) =>
                 {
                     UIApplication.SharedApplication.OpenUrl(
-                        new NSUrl(UIApplication.OpenSettingsUrlString));
+                        new NSUrl(UIApplication.OpenSettingsUrlString),
+                        new UIApplicationOpenUrlOptions(), null);
                 }));
             alertController.AddAction(cancelAction);
             alertController.AddAction(settingsAction);

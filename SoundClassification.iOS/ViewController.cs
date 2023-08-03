@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
 using CoreFoundation;
-using Foundation;
-using UIKit;
+using ObjCRuntime;
 
 namespace SoundClassification
 {
@@ -11,7 +8,7 @@ namespace SoundClassification
         IAudioInputManagerDelegate,
         ISoundClassifierDelegate
     {
-        public ViewController(IntPtr handle) : base(handle) { }
+        public ViewController(NativeHandle handle) : base(handle) { }
 
         // MARK: - Variables
         private AudioInputManager audioInputManager;

@@ -1,8 +1,4 @@
-﻿using Foundation;
-using System;
-using UIKit;
-
-namespace AudioClassification
+﻿namespace AudioClassification
 {
     public partial class ViewController : UIViewController
     {

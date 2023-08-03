@@ -1,10 +1,8 @@
-using System;
 using System.Diagnostics;
 using AVFoundation;
 using CoreFoundation;
 using CoreMedia;
 using CoreVideo;
-using Foundation;
 
 namespace ImageClassification
 {
@@ -268,14 +266,14 @@ namespace ImageClassification
         private bool AddVideoDataOutput()
         {
             var sampleBufferQueue = new DispatchQueue(label: "sampleBufferQueue");
-            videoDataOutput.SetSampleBufferDelegateQueue(this, sampleBufferCallbackQueue: sampleBufferQueue);
+            videoDataOutput.SetSampleBufferDelegate(this, sampleBufferCallbackQueue: sampleBufferQueue);
             videoDataOutput.AlwaysDiscardsLateVideoFrames = true;
             videoDataOutput.WeakVideoSettings = new CVPixelBufferAttributes { PixelFormatType = CVPixelFormatType.CV32BGRA }.Dictionary;
 
             if (session.CanAddOutput(videoDataOutput))
             {
                 session.AddOutput(videoDataOutput);
-                videoDataOutput.ConnectionFromMediaType(AVMediaType.Video).VideoOrientation = AVCaptureVideoOrientation.Portrait;
+                videoDataOutput.ConnectionFromMediaType(new NSString("vide")/*AVMediaType.Video*/).VideoOrientation = AVCaptureVideoOrientation.Portrait;
                 return true;
             }
             return false;

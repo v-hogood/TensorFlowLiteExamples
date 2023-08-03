@@ -1,8 +1,5 @@
-using System;
 using AVFoundation;
-using Foundation;
 using ObjCRuntime;
-using UIKit;
 
 namespace ImageClassification
 {

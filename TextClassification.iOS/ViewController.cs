@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CoreFoundation;
-using Foundation;
+﻿using CoreFoundation;
 using TensorFlowLiteTaskText;
-using UIKit;
 
 namespace TextClassification
 {
@@ -94,7 +89,7 @@ namespace TextClassification
 
         // UITableViewDataSource
 
-        public System.nint RowsInSection(UITableView tableView, System.nint section)
+        public nint RowsInSection(UITableView tableView, nint section)
         {
             return results.Count;
         }
@@ -109,8 +104,10 @@ namespace TextClassification
                 var value = result.results.ValueForKey(key);
                 displayText += "\t" + key + ": " + value + "\n";
             }
+#pragma warning disable CA1422
             cell.TextLabel.Text = displayText.Trim();
             cell.TextLabel.Lines = 0;
+#pragma warning restore CA1422
             return cell;
         }
 

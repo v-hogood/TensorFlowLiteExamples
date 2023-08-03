@@ -1,6 +1,4 @@
-using System;
 using TensorFlowLiteTaskAudio;
-using UIKit;
 
 namespace AudioClassification
 {
@@ -15,7 +13,7 @@ namespace AudioClassification
             if (!Double.IsNaN(data.Score))
             {
                 // score view width is equal 1/4 screen with
-                scoreWidthLayoutConstraint.Constant = UIScreen.MainScreen.Bounds.Width / 4 * new System.nfloat(data.Score);
+                scoreWidthLayoutConstraint.Constant = UIScreen.MainScreen.Bounds.Width / 4 * new nfloat(data.Score);
             }
             else
             {

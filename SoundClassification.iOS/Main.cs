@@ -1,6 +1,4 @@
-﻿using UIKit;
-
-namespace SoundClassification
+﻿namespace SoundClassification
 {
     public class Application
     {

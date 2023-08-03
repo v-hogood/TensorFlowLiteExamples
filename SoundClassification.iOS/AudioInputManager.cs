@@ -1,9 +1,7 @@
-using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using AVFoundation;
 using CoreFoundation;
-using Foundation;
 
 namespace SoundClassification
 {
@@ -109,7 +107,6 @@ namespace SoundClassification
                         return;
                     }
                     var channelData = pcmBuffer.Int16ChannelData;
-                    if (channelData != null)
                     unsafe
                     {
                         var channelDataValue = (IntPtr*)channelData.ToPointer();

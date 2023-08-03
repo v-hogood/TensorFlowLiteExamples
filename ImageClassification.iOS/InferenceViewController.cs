@@ -1,12 +1,4 @@
-using System;
-using System.Linq;
-using CoreGraphics;
-using CoreImage;
-using Foundation;
-using Photos;
-using UIKit;
 using static ImageClassification.Constants;
-using static ImageClassification.InferenceViewController;
 
 namespace ImageClassification
 {
