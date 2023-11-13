@@ -5,7 +5,7 @@
     [Register ("AppDelegate")]
     public class AppDelegate : UIResponder, IUIApplicationDelegate
     {
-        [Export("window")]
+        [Export ("window")]
         public UIWindow Window { get; set; }
     }
 }
