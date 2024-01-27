@@ -14,8 +14,8 @@
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="TensorFlowLite.iOS" Version="2.13.0" />
-    <PackageReference Include="TensorFlowLiteSelectTfOps.iOS" Version="2.13.0" />
+    <PackageReference Include="TensorFlowLite.iOS" Version="2.14.0" />
+    <PackageReference Include="TensorFlowLiteSelectTfOps.iOS" Version="2.14.0" />
   </ItemGroup>
   <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
     <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/sound_classification/snap_clap.tflite" DestinationFolder="Resources" DestinationFileName="sound_classification.tflite" />
