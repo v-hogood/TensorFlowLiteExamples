@@ -4,6 +4,7 @@ using Android.Util;
 using Android.Views;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Camera.Core;
+using AndroidX.Camera.Core.ResolutionSelector;
 using AndroidX.Camera.Lifecycle;
 using AndroidX.Camera.View;
 using AndroidX.Core.Content;
@@ -249,17 +250,22 @@ namespace ImageClassification
             var cameraSelector =
                 new CameraSelector.Builder().RequireLensFacing(CameraSelector.LensFacingBack).Build();
 
+            // ResolutionSelector
+            var resolutionSelector = new ResolutionSelector.Builder().
+                SetAspectRatioStrategy(AspectRatioStrategy.Ratio43FallbackAutoStrategy)
+                .Build();
+
             // Preview. Only using the 4:3 ratio because this is the closest to our models
             preview =
                 new Preview.Builder()
-                    .SetTargetAspectRatio(AspectRatio.Ratio43)
+                    .SetResolutionSelector(resolutionSelector)
                     .SetTargetRotation((int)viewFinder.Display.Rotation)
                     .Build();
 
             // ImageAnalysis. Using RGBA 8888 to match how our models work
             imageAnalyzer =
                 new ImageAnalysis.Builder()
-                    .SetTargetAspectRatio(AspectRatio.Ratio43)
+                    .SetResolutionSelector(resolutionSelector)
                     .SetTargetRotation((int)viewFinder.Display.Rotation)
                     .SetBackpressureStrategy(ImageAnalysis.StrategyKeepOnlyLatest)
                     .SetOutputImageFormat(ImageAnalysis.OutputImageFormatRgba8888)

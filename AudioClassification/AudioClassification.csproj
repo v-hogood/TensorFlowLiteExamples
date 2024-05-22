@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0-android</TargetFramework>
+    <TargetFramework>net8.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
     <Nullable>disable</Nullable>
@@ -13,8 +13,8 @@
   <ItemGroup>
     <PackageReference Include="TensorFlow.Lite.Task.Base" Version="0.4.4" />
     <PackageReference Include="TensorFlow.Lite.Task.Audio" Version="0.4.4" />
-    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.7.5" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.10.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.7.7.2" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.10.0.4" />
   </ItemGroup>
   <Target Name="DownloadFile" BeforeTargets="CoreCompile">
     <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/lite-model_yamnet_classification_tflite_1.tflite" DestinationFolder="Assets" DestinationFileName="yamnet.tflite" />

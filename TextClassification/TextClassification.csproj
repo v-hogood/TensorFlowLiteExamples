@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0-android</TargetFramework>
+    <TargetFramework>net8.0-android</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
     <Nullable>disable</Nullable>
@@ -12,7 +12,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.4" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.10.0.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.10.0.4" />
   </ItemGroup>
   <Target Name="DownloadFile" BeforeTargets="CoreCompile">
     <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/text_classification_v2.tflite" DestinationFolder="Assets" DestinationFileName="wordvec.tflite" />
