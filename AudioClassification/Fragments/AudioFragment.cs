@@ -64,13 +64,13 @@ namespace AudioClassification
 
         public void OnItemSelected(AdapterView parent, View view, int position, long id)
         {
-            if (view.Id == Resource.Id.spinner_overlap)
+            if (parent.Id == Resource.Id.spinner_overlap)
             {
                 audioHelper.StopAudioClassification();
                 audioHelper.Overlap = 0.25f * position;
                 audioHelper.StartAudioClassification();
             }
-            else if (view.Id == Resource.Id.spinner_delegate)
+            else if (parent.Id == Resource.Id.spinner_delegate)
             {
                 audioHelper.StopAudioClassification();
                 audioHelper.CurrentDelegate = position;

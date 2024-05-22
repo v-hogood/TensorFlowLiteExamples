@@ -198,12 +198,12 @@ namespace ImageClassification
 
         public void OnItemSelected(AdapterView parent, View view, int position, long id)
         {
-            if (view.Id == Resource.Id.spinner_delegate)
+            if (parent.Id == Resource.Id.spinner_delegate)
             {
                 imageClassifierHelper.CurrentDelegate = position;
                 UpdateControlsUi();
             }
-            else if (view.Id == Resource.Id.spinner_model)
+            else if (parent.Id == Resource.Id.spinner_model)
             {
                 imageClassifierHelper.CurrentModel = position;
                 UpdateControlsUi();
