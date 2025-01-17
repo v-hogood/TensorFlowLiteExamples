@@ -284,7 +284,7 @@ namespace ImageClassification
                 camera = cameraProvider.BindToLifecycle(this, cameraSelector, preview, imageAnalyzer);
 
                 // Attach the viewfinder's surface provider to preview use case
-                preview.SetSurfaceProvider(viewFinder.SurfaceProvider);
+                preview.SetSurfaceProvider(cameraExecutor, viewFinder.SurfaceProvider);
             }
             catch (Exception exc)
             {
