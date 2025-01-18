@@ -13,7 +13,7 @@
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="TensorFlowLiteTaskText.iOS" Version="0.4.3.1" />
+    <PackageReference Include="TensorFlowLiteTaskText.iOS" Version="0.4.3.2" />
   </ItemGroup>
   <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
     <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/ios/text_classification_v2.tflite" DestinationFolder="Resources" DestinationFileName="text_classification.tflite" />

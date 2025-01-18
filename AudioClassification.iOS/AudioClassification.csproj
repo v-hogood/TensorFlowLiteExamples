@@ -13,7 +13,7 @@
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="TensorFlowLiteTaskAudio.iOS" Version="0.4.3.1" />
+    <PackageReference Include="TensorFlowLiteTaskAudio.iOS" Version="0.4.3.2" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Update="Assets.xcassets\tfl_logo.imageset\tfl_logo%402x.png">
