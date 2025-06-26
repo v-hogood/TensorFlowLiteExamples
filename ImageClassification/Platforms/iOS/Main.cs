@@ -1,4 +1,6 @@
-﻿namespace ImageClassification
+﻿using UIKit;
+
+namespace ImageClassification
 {
     public class Application
     {

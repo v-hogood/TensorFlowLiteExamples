@@ -1,5 +1,8 @@
 using CoreFoundation;
+using CoreGraphics;
 using CoreVideo;
+using Foundation;
+using UIKit;
 using static ImageClassification.Constants;
 using static ImageClassification.InferenceViewController;
 

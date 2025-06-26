@@ -1,3 +1,6 @@
+using CoreGraphics;
+using Foundation;
+using UIKit;
 using static ImageClassification.Constants;
 
 namespace ImageClassification

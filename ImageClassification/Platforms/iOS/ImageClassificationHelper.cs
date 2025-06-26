@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using CoreVideo;
+using Foundation;
 using TensorFlowLiteTaskVision;
 
 namespace ImageClassification

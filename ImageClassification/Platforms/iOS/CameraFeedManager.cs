@@ -3,6 +3,7 @@ using AVFoundation;
 using CoreFoundation;
 using CoreMedia;
 using CoreVideo;
+using Foundation;
 
 namespace ImageClassification
 {
