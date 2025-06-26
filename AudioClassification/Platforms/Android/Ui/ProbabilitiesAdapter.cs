@@ -5,6 +5,9 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using TensorFlow.Lite.Support.Label;
+using Color = Android.Graphics.Color;
+using ProgressBar = Android.Widget.ProgressBar;
+using View = Android.Views.View;
 
 namespace AudioClassification
 {

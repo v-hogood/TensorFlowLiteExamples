@@ -135,6 +135,6 @@ namespace AudioClassification
         const int DefaultNumOfResults = 2;
         const float DefaultOverlapValue = 0.5f;
         public const string YamnetModel = "yamnet.tflite";
-        public const string SpeechCommandModel = "speech.tflite";
+        public const string SpeechCommandModel = "speech_commands.tflite";
     }
 }

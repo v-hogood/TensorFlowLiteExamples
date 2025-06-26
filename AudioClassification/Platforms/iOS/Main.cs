@@ -1,4 +1,6 @@
-﻿namespace AudioClassification
+﻿using UIKit;
+
+namespace AudioClassification
 {
     public class Application
     {

@@ -1,6 +1,8 @@
 using AVFoundation;
 using CoreFoundation;
+using Foundation;
 using TensorFlowLiteTaskAudio;
+using UIKit;
 using static AudioClassification.InferenceView;
 
 namespace AudioClassification

@@ -1,22 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
+    <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <Nullable>disable</Nullable>
+    <RootNamespace>AudioClassification</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationId>org.tensorflow.lite.examples.AudioClassification</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
+    <Nullable>disable</Nullable>
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences> 
+
+    <!-- Display name -->
+    <ApplicationTitle>AudioClassification</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>org.tensorflow.lite.samples.AudioClassification</ApplicationId>
+
+    <!-- Versions -->
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-ios'">13.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-android'">23.0</SupportedOSPlatformVersion>
+
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-ios'">ios-arm64</RuntimeIdentifier>
+
     <AndroidStoreUncompressedFileExtensions>tflite</AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
-  <ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <CreatePackage>false</CreatePackage>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
     <PackageReference Include="TensorFlow.Lite.Task.Audio" Version="0.4.4.1" />
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.8.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.12.0.1" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+    <PackageReference Include="TensorFlowLiteTaskAudio.iOS" Version="0.4.3.2" Condition="'$(TargetFramework)' == 'net8.0-ios'" />
+  </ItemGroup>
+
   <Target Name="DownloadFile" BeforeTargets="CoreCompile">
-    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/lite-model_yamnet_classification_tflite_1.tflite" DestinationFolder="Assets" DestinationFileName="yamnet.tflite" />
-    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/speech_commands.tflite" DestinationFolder="Assets" DestinationFileName="speech.tflite" />
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/lite-model_yamnet_classification_tflite_1.tflite" DestinationFolder="Resources" DestinationFileName="yamnet.tflite" />
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/audio_classification/android/speech_commands.tflite" DestinationFolder="Resources" DestinationFileName="speech_commands.tflite" />
   </Target>
 </Project>
