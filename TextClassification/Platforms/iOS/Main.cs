@@ -1,4 +1,6 @@
-﻿namespace TextClassification
+﻿using UIKit;
+
+namespace TextClassification
 {
     public class Application
     {

@@ -1,5 +1,8 @@
 ﻿using CoreFoundation;
+using Foundation;
+using ObjCRuntime;
 using TensorFlowLiteTaskText;
+using UIKit;
 
 namespace TextClassification
 {
@@ -12,7 +15,7 @@ namespace TextClassification
         void LoadModel()
         {
             var modelPath = NSBundle.MainBundle.PathForResource(
-                "text_classification", "tflite");
+                "wordvec", "tflite");
             if (modelPath == null) return;
             var options = new TFLNLClassifierOptions();
             this.classifier = TFLNLClassifier.NlClassifierWithModelPath(modelPath, options);
@@ -20,7 +23,7 @@ namespace TextClassification
 
         private List<ClassificationResult> results = new List<ClassificationResult>();
 
-        public ViewController(IntPtr handle) : base(handle) { }
+        public ViewController(NativeHandle handle) : base(handle) { }
 
         public override void ViewDidLoad ()
         {

@@ -1,21 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <Nullable>disable</Nullable>
+    <RootNamespace>TextClassification</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationId>org.tensorflow.lite.examples.TextClassification</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
+    <Nullable>disable</Nullable>
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences> 
+
+    <!-- Display name -->
+    <ApplicationTitle>TextClassification</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>org.tensorflow.lite.samples.TextClassification</ApplicationId>
+
+    <!-- Versions -->
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-ios'">13.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-android'">23.0</SupportedOSPlatformVersion>
+
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-ios'">ios-arm64</RuntimeIdentifier>
+
     <AndroidStoreUncompressedFileExtensions>tflite</AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
-  <ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <CreatePackage>false</CreatePackage>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
     <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.4.1" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx" Version="1.8.5.1" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.12.0.1" />
   </ItemGroup>
-  <Target Name="DownloadFile" BeforeTargets="CoreCompile">
-    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/text_classification_v2.tflite" DestinationFolder="Assets" DestinationFileName="wordvec.tflite" />
-    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/mobilebert.tflite" DestinationFolder="Assets" DestinationFileName="mobilebert.tflite" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+    <PackageReference Include="TensorFlowLiteTaskText.iOS" Version="0.4.3.2" Condition="'$(TargetFramework)' == 'net8.0-ios'" />
+  </ItemGroup>
+
+  <Target Name="DownloadFiles" BeforeTargets="CoreCompile">
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/text_classification_v2.tflite" DestinationFolder="Platforms/Android/Assets" DestinationFileName="wordvec.tflite" />
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/mobilebert.tflite" DestinationFolder="Platforms/Android/Assets" DestinationFileName="mobilebert.tflite" />
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/text_classification_v2.tflite" DestinationFolder="Platforms/iOS/Resources" DestinationFileName="wordvec.tflite" />
+    <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/task_library/text_classification/android/mobilebert.tflite" DestinationFolder="Platforms/iOS/Resources" DestinationFileName="mobilebert.tflite" />
   </Target>
 </Project>
