@@ -1,21 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0-ios</TargetFramework>
+    <TargetFramework>net10.0-ios</TargetFramework>
     <OutputType>Exe</OutputType>
     <Nullable>disable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <CreatePackage>false</CreatePackage>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <CreatePackage>false</CreatePackage>
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="TensorFlowLite.iOS" Version="2.17.0" />
-    <PackageReference Include="TensorFlowLiteSelectTfOps.iOS" Version="2.17.0" />
+    <PackageReference Include="TensorFlowLite.iOS" Version="2.17.1" />
+    <PackageReference Include="TensorFlowLiteSelectTfOps.iOS" Version="2.17.1" />
   </ItemGroup>
   <Target Name="DownloadFiles" BeforeTargets="PrepareForBuild">
     <DownloadFile SourceUrl="https://storage.googleapis.com/download.tensorflow.org/models/tflite/sound_classification/snap_clap.tflite" DestinationFolder="Resources" DestinationFileName="sound_classification.tflite" />
