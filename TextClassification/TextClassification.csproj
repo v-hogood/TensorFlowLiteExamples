@@ -32,13 +32,13 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
-    <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.4.1" />
-    <PackageReference Include="Xamarin.AndroidX.Compose.Runtime.Annotation" Version="1.10.0.1" />
-    <PackageReference Include="Xamarin.AndroidX.Compose.Runtime.Annotation.Jvm" Version="1.10.0.1" ExcludeAssets="all" />
-    <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx" Version="1.8.9.1" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.10.0.1" /> 
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="2.10.0.1" /> 
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.13.0.1" />
+    <PackageReference Include="TensorFlow.Lite.Task.Text" Version="0.4.4.2" />
+    <PackageReference Include="Xamarin.AndroidX.Compose.Runtime.Annotation" Version="1.10.4.1" />
+    <PackageReference Include="Xamarin.AndroidX.Compose.Runtime.Annotation.Jvm" Version="1.10.4.1" ExcludeAssets="all" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx" Version="1.8.9.2" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.10.0.2" /> 
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="2.10.0.2" /> 
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.13.0.2" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-ios'">
     <PackageReference Include="TensorFlowLiteTaskText.iOS" Version="0.4.3.3" Condition="'$(TargetFramework)' == 'net10.0-ios'" />
